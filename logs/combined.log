@@ -1,0 +1,31 @@
+{"level":"info","message":"Hello from Nexus!","service":"acquisitions-api"}
+{"level":"info","message":"::1 - - [24/Feb/2026:19:53:08 +0000] \"GET / HTTP/1.1\" 200 16 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0\"","service":"acquisitions-api"}
+{"level":"info","message":"::1 - - [24/Feb/2026:19:53:08 +0000] \"GET /favicon.ico HTTP/1.1\" 404 150 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0\"","service":"acquisitions-api"}
+{"level":"info","message":"Hello from Nexus!","service":"acquisitions-api"}
+{"level":"info","message":"::1 - - [24/Feb/2026:19:53:10 +0000] \"GET / HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0\"","service":"acquisitions-api"}
+{"level":"info","message":"Hello from Nexus!","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [24/Feb/2026:19:57:35 +0000] \"GET / HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0\"","service":"Nexus-api"}
+{"level":"info","message":"Hello from Nexus!","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [24/Feb/2026:19:57:35 +0000] \"GET / HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0\"","service":"Nexus-api"}
+{"level":"info","message":"Hello from Nexus!","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [24/Feb/2026:20:26:12 +0000] \"GET / HTTP/1.1\" 200 16 \"-\" \"PostmanRuntime/7.51.0\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [24/Feb/2026:20:26:36 +0000] \"GET /api HTTP/1.1\" 200 53 \"-\" \"PostmanRuntime/7.51.0\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [24/Feb/2026:20:26:45 +0000] \"GET /health HTTP/1.1\" 200 75 \"-\" \"PostmanRuntime/7.51.0\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [24/Feb/2026:20:27:02 +0000] \"POST /api/auth/sign-in HTTP/1.1\" 404 156 \"-\" \"PostmanRuntime/7.51.0\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [24/Feb/2026:20:27:26 +0000] \"POST /api/auth/sign-in HTTP/1.1\" 404 156 \"-\" \"PostmanRuntime/7.51.0\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [24/Feb/2026:20:27:27 +0000] \"POST /api/auth/sign-in HTTP/1.1\" 404 156 \"-\" \"PostmanRuntime/7.51.0\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [24/Feb/2026:20:27:28 +0000] \"POST /api/auth/sign-in HTTP/1.1\" 404 156 \"-\" \"PostmanRuntime/7.51.0\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [24/Feb/2026:20:28:37 +0000] \"POST /api/auth/sign-in HTTP/1.1\" 404 156 \"-\" \"PostmanRuntime/7.51.0\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [24/Feb/2026:20:28:37 +0000] \"POST /api/auth/sign-in HTTP/1.1\" 404 156 \"-\" \"PostmanRuntime/7.51.0\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [24/Feb/2026:20:28:38 +0000] \"POST /api/auth/sign-in HTTP/1.1\" 404 156 \"-\" \"PostmanRuntime/7.51.0\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [24/Feb/2026:20:29:40 +0000] \"POST /api/auth/sign-in HTTP/1.1\" 200 31 \"-\" \"PostmanRuntime/7.51.0\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:16:32:47 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 200 31 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:16:41:34 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 400 93 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"level":"info","message":"User registered successfully : pasan@example.com","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:16:59:22 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 201 86 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"level":"info","message":"User registered successfully : pasan@example.com","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:17:00:19 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 201 113 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"level":"info","message":"User pasan@example.com created successfully","service":"Nexus-api"}
+{"level":"info","message":"User registered successfully: pasan@example.com","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:17:53:48 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 201 113 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:18:28:04 +0000] \"GET /api/auth/sign-in HTTP/1.1\" 404 155 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
