@@ -244,3 +244,12 @@
 {"level":"info","message":"::ffff:172.19.0.1 - - [26/Feb/2026:23:10:17 +0000] \"GET /users HTTP/1.1\" 404 144 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
 {"level":"info","message":"Getting all users...","service":"Nexus-api"}
 {"level":"info","message":"::ffff:172.19.0.1 - - [26/Feb/2026:23:10:24 +0000] \"GET /api/users HTTP/1.1\" 200 220 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [26/Feb/2026:23:43:39 +0000] \"GET /health HTTP/1.1\" 200 73 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [26/Feb/2026:23:43:39 +0000] \"GET /api HTTP/1.1\" 200 53 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [26/Feb/2026:23:43:39 +0000] \"GET /nonexsistent HTTP/1.1\" 404 9 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [26/Feb/2026:23:44:50 +0000] \"GET /health HTTP/1.1\" 200 73 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [26/Feb/2026:23:44:50 +0000] \"GET /api HTTP/1.1\" 200 53 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [26/Feb/2026:23:44:50 +0000] \"GET /nonexsistent HTTP/1.1\" 404 27 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [26/Feb/2026:23:46:26 +0000] \"GET /health HTTP/1.1\" 200 73 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [26/Feb/2026:23:46:26 +0000] \"GET /api HTTP/1.1\" 200 53 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [26/Feb/2026:23:46:26 +0000] \"GET /nonexsistent HTTP/1.1\" 404 27 \"-\" \"-\"","service":"Nexus-api"}
