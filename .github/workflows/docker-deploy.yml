@@ -17,7 +17,7 @@ jobs:
   # Build and test job
   build-and-test:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -49,13 +49,13 @@ jobs:
             -e JWT_SECRET=test-secret \
             -p 3000:3000 \
             nexus-api:test
-          
+
           # Wait for the app to start
           sleep 10
-          
+
           # Test health endpoint
           curl --fail http://localhost:3000/health || exit 1
-          
+
           # Cleanup
           docker stop test-api
           docker rm test-api
@@ -65,7 +65,7 @@ jobs:
     needs: build-and-test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -124,7 +124,7 @@ jobs:
     needs: build-and-test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

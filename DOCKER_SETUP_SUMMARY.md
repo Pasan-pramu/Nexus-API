@@ -5,34 +5,41 @@ This document provides an overview of all Docker-related files created for the N
 ## 📁 Files Created
 
 ### Core Docker Files
+
 - ✅ `Dockerfile` - Multi-stage Docker image for the application
 - ✅ `.dockerignore` - Files to exclude from Docker builds
 - ✅ `docker-compose.dev.yml` - Development environment with Neon Local
 - ✅ `docker-compose.prod.yml` - Production environment with Neon Cloud
 
 ### Environment Configuration
+
 - ✅ `.env.development` - Development environment variables (Neon Local)
 - ✅ `.env.production` - Production environment variables template (Neon Cloud)
 
 ### Documentation
+
 - ✅ `DOCKER.md` - Comprehensive Docker setup guide (detailed)
 - ✅ `QUICKSTART.md` - Quick start guide (5-minute setup)
 
 ### Helper Scripts
 
 #### PowerShell (Windows)
+
 - ✅ `scripts/dev-start.ps1` - Start development environment
 - ✅ `scripts/prod-deploy.ps1` - Deploy production environment
 
 #### Bash (Linux/Mac)
+
 - ✅ `scripts/dev-start.sh` - Start development environment
 - ✅ `scripts/prod-deploy.sh` - Deploy production environment
 
 ### CI/CD
+
 - ✅ `.github/workflows/docker-deploy.yml` - GitHub Actions workflow
 - ✅ `.github/workflows/README.md` - CI/CD configuration guide
 
 ### Other
+
 - ✅ `.gitignore` - Updated to include Docker and environment files
 
 ---
@@ -40,6 +47,7 @@ This document provides an overview of all Docker-related files created for the N
 ## 🏗️ Architecture
 
 ### Development Environment
+
 ```
 ┌─────────────────────────────────────────────┐
 │  Docker Network: nexus-network              │
@@ -56,6 +64,7 @@ This document provides an overview of all Docker-related files created for the N
 ```
 
 ### Production Environment
+
 ```
 ┌──────────────────────┐       ┌──────────────────────┐
 │                      │       │                      │
@@ -71,6 +80,7 @@ This document provides an overview of all Docker-related files created for the N
 ## 🚀 Quick Commands Reference
 
 ### Development
+
 ```powershell
 # Start
 docker-compose -f docker-compose.dev.yml up --build
@@ -86,6 +96,7 @@ docker-compose -f docker-compose.dev.yml exec app npm run db:migrate
 ```
 
 ### Production
+
 ```powershell
 # Build image
 docker build -t nexus-api:latest .
@@ -104,6 +115,7 @@ docker-compose -f docker-compose.prod.yml logs -f
 ```
 
 ### Using Helper Scripts
+
 ```powershell
 # Development (Windows)
 .\scripts\dev-start.ps1
@@ -124,19 +136,21 @@ chmod +x scripts/prod-deploy.sh
 
 ## 📊 Environment Variables
 
-| Variable | Development | Production | Required |
-|----------|-------------|------------|----------|
-| `NODE_ENV` | `development` | `production` | Yes |
-| `PORT` | `3000` | `3000` | No |
-| `DATABASE_URL` | Neon Local URL | Neon Cloud URL | Yes |
-| `JWT_SECRET` | Dev secret | Secure secret | Yes |
+| Variable       | Development    | Production     | Required |
+| -------------- | -------------- | -------------- | -------- |
+| `NODE_ENV`     | `development`  | `production`   | Yes      |
+| `PORT`         | `3000`         | `3000`         | No       |
+| `DATABASE_URL` | Neon Local URL | Neon Cloud URL | Yes      |
+| `JWT_SECRET`   | Dev secret     | Secure secret  | Yes      |
 
 ### Development Database URL
+
 ```
 postgres://postgres:postgres@neon-local:5432/main
 ```
 
 ### Production Database URL (Example)
+
 ```
 postgres://user:password@ep-xyz-123.us-east-2.aws.neon.tech/dbname?sslmode=require
 ```
@@ -146,6 +160,7 @@ postgres://user:password@ep-xyz-123.us-east-2.aws.neon.tech/dbname?sslmode=requi
 ## 🔒 Security Considerations
 
 ### Files to Keep Secret (Never commit)
+
 - ❌ `.env` (local development)
 - ❌ `.env.production` (if contains real credentials)
 - ❌ `.env.local`
@@ -153,6 +168,7 @@ postgres://user:password@ep-xyz-123.us-east-2.aws.neon.tech/dbname?sslmode=requi
 - ✅ `.env.example` (safe to commit - template only)
 
 ### Best Practices Implemented
+
 1. ✅ Multi-stage Docker builds for smaller images
 2. ✅ Non-root user in containers
 3. ✅ Health checks configured
@@ -166,15 +182,19 @@ postgres://user:password@ep-xyz-123.us-east-2.aws.neon.tech/dbname?sslmode=requi
 ## 📖 Documentation Guide
 
 ### For Quick Setup (< 10 minutes)
+
 👉 Read: `QUICKSTART.md`
 
 ### For Detailed Setup and Configuration
+
 👉 Read: `DOCKER.md`
 
 ### For CI/CD Setup
+
 👉 Read: `.github/workflows/README.md`
 
 ### For Understanding This Setup
+
 👉 You're reading it! `DOCKER_SETUP_SUMMARY.md`
 
 ---
@@ -182,6 +202,7 @@ postgres://user:password@ep-xyz-123.us-east-2.aws.neon.tech/dbname?sslmode=requi
 ## 🧪 Testing the Setup
 
 ### Step 1: Test Development Environment
+
 ```powershell
 # Copy environment file
 Copy-Item .env.development .env
@@ -196,6 +217,7 @@ curl http://localhost:3000/health
 ```
 
 ### Step 2: Test Production Build
+
 ```powershell
 # Build the production image
 docker build -t nexus-api:latest .
@@ -205,6 +227,7 @@ docker images | Select-String nexus-api
 ```
 
 ### Step 3: Test Production Environment (requires Neon Cloud)
+
 ```powershell
 # Set environment variables
 $env:DATABASE_URL="your-neon-cloud-url"
@@ -225,28 +248,34 @@ docker-compose -f docker-compose.prod.yml logs -f
 ## 🔧 Customization
 
 ### Change Application Port
+
 Edit in `docker-compose.dev.yml` or `docker-compose.prod.yml`:
+
 ```yaml
 ports:
-  - "8080:3000"  # Host:Container
+  - '8080:3000' # Host:Container
 ```
 
 And update the `PORT` environment variable if needed.
 
 ### Add More Services
+
 Add to `docker-compose.dev.yml`:
+
 ```yaml
 services:
   redis:
     image: redis:alpine
     ports:
-      - "6379:6379"
+      - '6379:6379'
     networks:
       - nexus-network
 ```
 
 ### Change Database Credentials (Development)
+
 Edit in `docker-compose.dev.yml`:
+
 ```yaml
 environment:
   POSTGRES_USER: myuser
@@ -261,6 +290,7 @@ And update `DATABASE_URL` accordingly.
 ## 🆘 Troubleshooting
 
 ### Issue: Containers won't start
+
 ```powershell
 # Check Docker is running
 docker info
@@ -274,6 +304,7 @@ docker-compose -f docker-compose.dev.yml up --build
 ```
 
 ### Issue: Database connection fails
+
 ```powershell
 # Check database is healthy
 docker-compose -f docker-compose.dev.yml ps
@@ -286,6 +317,7 @@ docker-compose -f docker-compose.dev.yml exec app env | Select-String DATABASE
 ```
 
 ### Issue: Port already in use
+
 ```powershell
 # Find what's using port 3000
 netstat -ano | findstr :3000

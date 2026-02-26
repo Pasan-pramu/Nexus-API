@@ -1,15 +1,32 @@
-# Build stage
+# ── Development stage ──
+FROM node:20-alpine AS development
+
+WORKDIR /app
+
+COPY package*.json ./
+
+# Install ALL dependencies (including devDependencies)
+RUN npm ci
+
+COPY . .
+
+RUN mkdir -p logs
+
+EXPOSE 3000
+
+# Hot-reload via node --watch
+CMD ["node", "--watch", "src/index.js"]
+
+# ── Builder stage (production deps only) ──
 FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Copy package files
 COPY package*.json ./
 
-# Install production dependencies only
 RUN npm ci --omit=dev
 
-# Production stage
+# ── Production stage ──
 FROM node:20-alpine
 
 WORKDIR /app

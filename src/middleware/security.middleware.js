@@ -65,12 +65,10 @@ const securityMiddleware = async (req, res, next) => {
         path: req.path,
       });
 
-      return res
-        .status(429)
-        .json({
-          error: 'Too Many Requests',
-          message: 'Too many requests. Please try again later.',
-        });
+      return res.status(429).json({
+        error: 'Too Many Requests',
+        message: 'Too many requests. Please try again later.',
+      });
     }
 
     next();

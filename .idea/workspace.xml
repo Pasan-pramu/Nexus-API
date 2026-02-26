@@ -5,14 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b695171e-4ba9-43d9-8694-9e275ad82db9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Dockerfile.dev" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/users.controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/users.routes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/users.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/docker-deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/docker-deploy.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DOCKER.md" beforeDir="false" afterPath="$PROJECT_DIR$/DOCKER.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DOCKER_SETUP_SUMMARY.md" beforeDir="false" afterPath="$PROJECT_DIR$/DOCKER_SETUP_SUMMARY.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QUICKSTART.md" beforeDir="false" afterPath="$PROJECT_DIR$/QUICKSTART.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.prod.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.prod.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/combined.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/combined.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/error.lg" beforeDir="false" afterPath="$PROJECT_DIR$/logs/error.lg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/database.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/middleware/security.middleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/middleware/security.middleware.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +90,7 @@
       <updated>1771890203419</updated>
       <workItem from="1771890204705" duration="311000" />
       <workItem from="1771947206294" duration="14131000" />
-      <workItem from="1772120047782" duration="18972000" />
+      <workItem from="1772120047782" duration="24174000" />
     </task>
     <servers />
   </component>
