@@ -1,0 +1,155 @@
+name: Docker Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  # Build and test job
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: false
+          tags: nexus-api:test
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          load: true
+
+      - name: Run linter
+        run: |
+          docker run --rm nexus-api:test npm run lint
+
+      - name: Test application health
+        run: |
+          # Start the container
+          docker run -d --name test-api \
+            -e NODE_ENV=development \
+            -e PORT=3000 \
+            -e DATABASE_URL=postgres://test:test@localhost:5432/test \
+            -e JWT_SECRET=test-secret \
+            -p 3000:3000 \
+            nexus-api:test
+          
+          # Wait for the app to start
+          sleep 10
+          
+          # Test health endpoint
+          curl --fail http://localhost:3000/health || exit 1
+          
+          # Cleanup
+          docker stop test-api
+          docker rm test-api
+
+  # Deploy to production (only on main branch)
+  deploy-production:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=sha,prefix={{branch}}-
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Run database migrations
+        env:
+          DATABASE_URL: ${{ secrets.NEON_DATABASE_URL }}
+        run: |
+          docker run --rm \
+            -e DATABASE_URL="${DATABASE_URL}" \
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
+            npm run db:migrate
+
+      # Example: Deploy to a server via SSH
+      # Uncomment and configure for your deployment target
+      # - name: Deploy to production server
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.PRODUCTION_HOST }}
+      #     username: ${{ secrets.PRODUCTION_USER }}
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     script: |
+      #       cd /opt/nexus-api
+      #       docker-compose -f docker-compose.prod.yml pull
+      #       docker-compose -f docker-compose.prod.yml up -d
+
+  # Deploy to staging (on develop branch)
+  deploy-staging:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push staging image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:staging
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Run database migrations (staging)
+        env:
+          DATABASE_URL: ${{ secrets.NEON_STAGING_DATABASE_URL }}
+        run: |
+          docker run --rm \
+            -e DATABASE_URL="${DATABASE_URL}" \
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:staging \
+            npm run db:migrate

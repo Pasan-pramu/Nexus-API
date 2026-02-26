@@ -63,3 +63,93 @@
 {"level":"info","message":"::1 - - [26/Feb/2026:19:06:19 +0000] \"GET /health HTTP/1.1\" 403 68 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
 {"ip":"::1","level":"warn","message":"Bot request blocked","path":"/health","service":"Nexus-api","userAgent":"PostmanRuntime/7.51.1"}
 {"level":"info","message":"::1 - - [26/Feb/2026:19:06:20 +0000] \"GET /health HTTP/1.1\" 403 68 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:19:12:55 +0000] \"GET /health HTTP/1.1\" 200 73 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:19:12:57 +0000] \"GET /health HTTP/1.1\" 200 73 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:19:12:58 +0000] \"GET /health HTTP/1.1\" 200 72 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:19:12:59 +0000] \"GET /health HTTP/1.1\" 200 73 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:19:13:00 +0000] \"GET /health HTTP/1.1\" 200 73 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:19:13:01 +0000] \"GET /health HTTP/1.1\" 200 73 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"ip":"::1","level":"warn","message":"Rate limit exceeded","path":"/health","service":"Nexus-api","userAgent":"PostmanRuntime/7.51.1"}
+{"level":"info","message":"::1 - - [26/Feb/2026:19:13:02 +0000] \"GET /health HTTP/1.1\" 429 84 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"ip":"::1","level":"warn","message":"Rate limit exceeded","path":"/health","service":"Nexus-api","userAgent":"PostmanRuntime/7.51.1"}
+{"level":"info","message":"::1 - - [26/Feb/2026:19:13:02 +0000] \"GET /health HTTP/1.1\" 429 84 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"ip":"::1","level":"warn","message":"Rate limit exceeded","path":"/health","service":"Nexus-api","userAgent":"PostmanRuntime/7.51.1"}
+{"level":"info","message":"::1 - - [26/Feb/2026:19:13:03 +0000] \"GET /health HTTP/1.1\" 429 84 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"ip":"::1","level":"warn","message":"Rate limit exceeded","path":"/health","service":"Nexus-api","userAgent":"PostmanRuntime/7.51.1"}
+{"level":"info","message":"::1 - - [26/Feb/2026:19:13:03 +0000] \"GET /health HTTP/1.1\" 429 84 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"ip":"::1","level":"warn","message":"Rate limit exceeded","path":"/health","service":"Nexus-api","userAgent":"PostmanRuntime/7.51.1"}
+{"level":"info","message":"::1 - - [26/Feb/2026:19:13:04 +0000] \"GET /health HTTP/1.1\" 429 84 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"ip":"::1","level":"warn","message":"Rate limit exceeded","path":"/health","service":"Nexus-api","userAgent":"PostmanRuntime/7.51.1"}
+{"level":"info","message":"::1 - - [26/Feb/2026:19:13:05 +0000] \"GET /health HTTP/1.1\" 429 84 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"level":"info","message":"Hello from Nexus!","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:20:26:48 +0000] \"GET / HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0\"","service":"Nexus-api"}
+{"level":"info","message":"Hello from Nexus!","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:20:26:48 +0000] \"GET / HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:20:51:49 +0000] \"GET /health HTTP/1.1\" 200 75 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::ffff:172.18.0.1 - - [26/Feb/2026:20:52:03 +0000] \"GET /health HTTP/1.1\" 200 76 \"-\" \"curl/8.10.1\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:20:52:19 +0000] \"GET /health HTTP/1.1\" 200 76 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"Hello from Nexus!","service":"Nexus-api"}
+{"level":"info","message":"::ffff:172.18.0.1 - - [26/Feb/2026:20:52:21 +0000] \"GET / HTTP/1.1\" 200 16 \"-\" \"curl/8.10.1\"","service":"Nexus-api"}
+{"level":"info","message":"::ffff:172.18.0.1 - - [26/Feb/2026:20:52:21 +0000] \"GET /api HTTP/1.1\" 200 53 \"-\" \"curl/8.10.1\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:20:52:49 +0000] \"GET /health HTTP/1.1\" 200 76 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:20:53:19 +0000] \"GET /health HTTP/1.1\" 200 76 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:20:53:50 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:20:54:20 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:20:54:50 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:20:55:20 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:20:55:51 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:20:56:21 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"Hello from Nexus!","service":"Nexus-api"}
+{"level":"info","message":"::ffff:172.18.0.1 - - [26/Feb/2026:20:56:27 +0000] \"GET / HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:20:56:43 +0000] \"GET /health HTTP/1.1\" 200 75 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:20:57:14 +0000] \"GET /health HTTP/1.1\" 200 76 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:20:57:44 +0000] \"GET /health HTTP/1.1\" 200 76 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:20:58:14 +0000] \"GET /health HTTP/1.1\" 200 76 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"Hello from Nexus!","service":"Nexus-api"}
+{"level":"info","message":"::ffff:172.18.0.1 - - [26/Feb/2026:20:58:33 +0000] \"GET / HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:20:58:44 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::ffff:172.18.0.1 - - [26/Feb/2026:20:59:11 +0000] \"GET /api HTTP/1.1\" 200 53 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:20:59:15 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::ffff:172.18.0.1 - - [26/Feb/2026:20:59:28 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0\"","service":"Nexus-api"}
+{"level":"info","message":"Hello from Nexus!","service":"Nexus-api"}
+{"level":"info","message":"::ffff:172.18.0.1 - - [26/Feb/2026:20:59:37 +0000] \"GET / HTTP/1.1\" 200 16 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:20:59:45 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:00:15 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:00:45 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:01:16 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::ffff:172.18.0.1 - - [26/Feb/2026:21:01:21 +0000] \"POST /api/auth/aign-up HTTP/1.1\" 404 156 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"level":"info","message":"User pasan@gmail.com created successfully","service":"Nexus-api"}
+{"level":"info","message":"User registered successfully: pasan@gmail.com","service":"Nexus-api"}
+{"level":"info","message":"::ffff:172.18.0.1 - - [26/Feb/2026:21:01:34 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 201 100 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:01:46 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:02:16 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:02:46 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:03:17 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:03:47 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:04:17 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:04:48 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:05:18 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"error","message":"Error creating the user: Error: User with this email already exists","service":"Nexus-api"}
+{"level":"error","message":"Signup error User with this email already exists","service":"Nexus-api","stack":"Error: User with this email already exists\n    at createUser (file:///app/src/services/auth.service.js:34:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async signup (file:///app/src/controllers/auth.controller.js:21:18)"}
+{"level":"info","message":"::ffff:172.18.0.1 - - [26/Feb/2026:21:05:24 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 409 31 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"level":"info","message":"User pasan@gmail456.com created successfully","service":"Nexus-api"}
+{"level":"info","message":"User registered successfully: pasan@gmail456.com","service":"Nexus-api"}
+{"level":"info","message":"::ffff:172.18.0.1 - - [26/Feb/2026:21:05:34 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 201 103 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:05:48 +0000] \"GET /health HTTP/1.1\" 200 76 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:06:18 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:06:49 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:07:19 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:07:49 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:08:19 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:08:50 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:09:20 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:09:50 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:10:21 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:10:51 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:11:21 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:11:52 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:12:22 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:12:52 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:13:22 +0000] \"GET /health HTTP/1.1\" 200 78 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:13:53 +0000] \"GET /health HTTP/1.1\" 200 78 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:21:14:23 +0000] \"GET /health HTTP/1.1\" 200 78 \"-\" \"-\"","service":"Nexus-api"}
