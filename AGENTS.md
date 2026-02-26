@@ -5,17 +5,20 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
 ## Development Commands
 
 ### Running the Application
+
 - **Development server with auto-reload**: `npm run dev`
   - Uses Node's `--watch` flag for automatic restarts on file changes
   - Server runs on port 3000 by default (configurable via PORT in .env)
 
 ### Code Quality
+
 - **Linting**: `npm run lint` - Check for code style issues
 - **Auto-fix linting**: `npm run lint:fix` - Automatically fix linting issues
 - **Format code**: `npm run format` - Format all files with Prettier
 - **Check formatting**: `npm run format:check` - Verify formatting without changes
 
 ### Database Operations (Drizzle ORM)
+
 - **Generate migrations**: `npm run db:generate` - Create migration files from schema changes
 - **Run migrations**: `npm run db:migrate` - Apply pending migrations to database
 - **Database studio**: `npm run db:studio` - Open Drizzle Studio for database browsing
@@ -25,14 +28,17 @@ Database is PostgreSQL via Neon serverless, configured in `drizzle.config.js`. S
 ## Architecture Overview
 
 ### Project Structure
+
 This is an Express.js REST API using ES6 modules with Node's import map aliases (`#config`, `#models`, etc.) defined in package.json.
 
 **Entry Point Flow**:
+
 1. `src/index.js` - Loads environment variables and imports server
 2. `src/server.js` - Starts Express server on configured PORT
 3. `src/app.js` - Express application setup with middleware and routes
 
 **Core Layers**:
+
 - **Routes** (`src/routes/`) - Express route definitions, map endpoints to controllers
 - **Controllers** (`src/controllers/`) - Handle HTTP requests/responses, validate input with Zod schemas
 - **Services** (`src/services/`) - Business logic and database operations
@@ -54,11 +60,13 @@ This is an Express.js REST API using ES6 modules with Node's import map aliases 
 **Middleware Stack**: helmet (security headers), cors, express.json/urlencoded, cookie-parser, morgan (HTTP logging).
 
 ### Code Style Conventions
+
 - ESLint config enforces: 2-space indentation, single quotes, semicolons, prefer const/arrow functions
 - Use import map aliases (e.g., `import logger from '#config/logger.js'`) instead of relative paths
 - Always include `.js` extension in imports (ES modules requirement)
 - Unused function parameters should be prefixed with underscore (e.g., `_req`)
 
 ### Known Issues
+
 - `src/routes/auth.routes.js` has incomplete implementations: `/sign-in` and `/sign-out` routes return placeholder responses but corresponding controller functions (`signIn`, `signOut`) are implemented and unused
 - Logger config has typo: error log file is `logs/error.lg` (should likely be `.log`)

@@ -5,21 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b695171e-4ba9-43d9-8694-9e275ad82db9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/config/logger.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/auth.controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/auth.routes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/auth.service.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/format.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/jwt.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/validations/auth.validation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drizzle.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/drizzle.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AGENTS.md" beforeDir="false" afterPath="$PROJECT_DIR$/AGENTS.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/combined.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/combined.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/database.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/user.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/user.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/auth.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/auth.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/auth.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/auth.routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/auth.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/auth.service.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +83,7 @@
       <updated>1771890203419</updated>
       <workItem from="1771890204705" duration="311000" />
       <workItem from="1771947206294" duration="14131000" />
-      <workItem from="1772120047782" duration="9417000" />
+      <workItem from="1772120047782" duration="12248000" />
     </task>
     <servers />
   </component>

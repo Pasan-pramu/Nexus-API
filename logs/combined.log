@@ -29,3 +29,37 @@
 {"level":"info","message":"User registered successfully: pasan@example.com","service":"Nexus-api"}
 {"level":"info","message":"::1 - - [26/Feb/2026:17:53:48 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 201 113 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
 {"level":"info","message":"::1 - - [26/Feb/2026:18:28:04 +0000] \"GET /api/auth/sign-in HTTP/1.1\" 404 155 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"level":"info","message":"User pasan@example.com authenticated successfully","service":"Nexus-api"}
+{"level":"info","message":"User signed in successfully: pasan@example.com","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:18:28:11 +0000] \"POST /api/auth/sign-in HTTP/1.1\" 200 125 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"level":"info","message":"User signed out successfully","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:18:28:24 +0000] \"POST /api/auth/sign-out HTTP/1.1\" 200 42 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"ip":"::1","level":"warn","message":"Bot request blocked","path":"/health","service":"Nexus-api","userAgent":"PostmanRuntime/7.51.1"}
+{"level":"info","message":"::1 - - [26/Feb/2026:18:55:11 +0000] \"GET /health HTTP/1.1\" 403 68 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"ip":"::1","level":"warn","message":"Bot request blocked","path":"/health","service":"Nexus-api","userAgent":"PostmanRuntime/7.51.1"}
+{"level":"info","message":"::1 - - [26/Feb/2026:18:55:18 +0000] \"GET /health HTTP/1.1\" 403 68 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"ip":"::1","level":"warn","message":"Bot request blocked","path":"/health","service":"Nexus-api","userAgent":"PostmanRuntime/7.51.1"}
+{"level":"info","message":"::1 - - [26/Feb/2026:18:55:27 +0000] \"GET /health HTTP/1.1\" 403 68 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"level":"info","message":"Hello from Nexus!","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:18:57:03 +0000] \"GET / HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0\"","service":"Nexus-api"}
+{"level":"info","message":"::1 - - [26/Feb/2026:18:57:03 +0000] \"GET /favicon.ico HTTP/1.1\" 404 150 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0\"","service":"Nexus-api"}
+{"ip":"::1","level":"warn","message":"Bot request blocked","path":"/health","service":"Nexus-api","userAgent":"PostmanRuntime/7.51.1"}
+{"level":"info","message":"::1 - - [26/Feb/2026:18:58:13 +0000] \"GET /health HTTP/1.1\" 403 68 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"ip":"::1","level":"warn","message":"Bot request blocked","path":"/health","service":"Nexus-api","userAgent":"PostmanRuntime/7.51.1"}
+{"level":"info","message":"::1 - - [26/Feb/2026:18:58:20 +0000] \"GET /health HTTP/1.1\" 403 68 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"ip":"::1","level":"warn","message":"Bot request blocked","path":"/health","service":"Nexus-api","userAgent":"PostmanRuntime/7.51.1"}
+{"level":"info","message":"::1 - - [26/Feb/2026:18:58:38 +0000] \"GET /health HTTP/1.1\" 403 68 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"ip":"::1","level":"warn","message":"Bot request blocked","path":"/health","service":"Nexus-api","userAgent":"PostmanRuntime/7.51.1"}
+{"level":"info","message":"::1 - - [26/Feb/2026:19:00:01 +0000] \"GET /health HTTP/1.1\" 403 68 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"ip":"::1","level":"warn","message":"Bot request blocked","path":"/health","service":"Nexus-api","userAgent":"PostmanRuntime/7.51.1"}
+{"level":"info","message":"::1 - - [26/Feb/2026:19:00:01 +0000] \"GET /health HTTP/1.1\" 403 68 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"ip":"::1","level":"warn","message":"Bot request blocked","path":"/health","service":"Nexus-api","userAgent":"PostmanRuntime/7.51.1"}
+{"level":"info","message":"::1 - - [26/Feb/2026:19:00:02 +0000] \"GET /health HTTP/1.1\" 403 68 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"ip":"::1","level":"warn","message":"Bot request blocked","path":"/health","service":"Nexus-api","userAgent":"PostmanRuntime/7.51.1"}
+{"level":"info","message":"::1 - - [26/Feb/2026:19:00:05 +0000] \"GET /health HTTP/1.1\" 403 68 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"ip":"::1","level":"warn","message":"Bot request blocked","path":"/health","service":"Nexus-api","userAgent":"PostmanRuntime/7.51.1"}
+{"level":"info","message":"::1 - - [26/Feb/2026:19:00:07 +0000] \"GET /health HTTP/1.1\" 403 68 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"ip":"::1","level":"warn","message":"Bot request blocked","path":"/health","service":"Nexus-api","userAgent":"PostmanRuntime/7.51.1"}
+{"level":"info","message":"::1 - - [26/Feb/2026:19:06:19 +0000] \"GET /health HTTP/1.1\" 403 68 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
+{"ip":"::1","level":"warn","message":"Bot request blocked","path":"/health","service":"Nexus-api","userAgent":"PostmanRuntime/7.51.1"}
+{"level":"info","message":"::1 - - [26/Feb/2026:19:06:20 +0000] \"GET /health HTTP/1.1\" 403 68 \"-\" \"PostmanRuntime/7.51.1\"","service":"Nexus-api"}
