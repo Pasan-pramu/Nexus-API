@@ -3,6 +3,7 @@ import { db } from '#config/database.js';
 import { purchaseOrders } from '#models/purchaseOrder.model.js';
 import { purchaseRequests } from '#models/purchaseRequest.model.js';
 import { products } from '#models/product.model.js';
+import { inventory } from '#models/inventory.model.js';
 import { eq, and, sql } from 'drizzle-orm';
 
 export const createPurchaseOrder = async ({ supplierId, prId, items, notes, createdBy }) => {
@@ -272,6 +273,7 @@ export const markAsReceived = async (id, receivedBy, notes) => {
     // Update inventory for each item in the PO
     const items = existingPO.items;
     for (const item of items) {
+      // Update product stock
       await db
         .update(products)
         .set({
@@ -279,6 +281,31 @@ export const markAsReceived = async (id, receivedBy, notes) => {
           updated_at: new Date(),
         })
         .where(eq(products.id, item.product_id));
+
+      // Update or create inventory record
+      const [existingInventory] = await db
+        .select()
+        .from(inventory)
+        .where(eq(inventory.product_id, item.product_id))
+        .limit(1);
+
+      if (existingInventory) {
+        // Update existing inventory
+        await db
+          .update(inventory)
+          .set({
+            quantity: sql`${inventory.quantity} + ${item.quantity}`,
+            updated_at: new Date(),
+          })
+          .where(eq(inventory.product_id, item.product_id));
+      } else {
+        // Create new inventory record
+        await db.insert(inventory).values({
+          product_id: item.product_id,
+          quantity: item.quantity,
+          min_threshold: 10,
+        });
+      }
 
       logger.info(`Inventory updated for product ${item.product_id}: +${item.quantity} units`);
     }
