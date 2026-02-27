@@ -51,15 +51,15 @@ jobs:
         run: |
           echo "## Test Results" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          
+
           if [ "${{ steps.tests.outcome }}" == "success" ]; then
             echo "✅ All tests passed successfully!" >> $GITHUB_STEP_SUMMARY
           else
             echo "❌ Tests failed. Please check the test output above." >> $GITHUB_STEP_SUMMARY
           fi
-          
+
           echo "" >> $GITHUB_STEP_SUMMARY
-          
+
           if [ -f coverage/coverage-summary.json ]; then
             echo "### Coverage Summary" >> $GITHUB_STEP_SUMMARY
             echo "Coverage report uploaded as artifact." >> $GITHUB_STEP_SUMMARY

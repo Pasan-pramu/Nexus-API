@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b695171e-4ba9-43d9-8694-9e275ad82db9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/tests/app.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/docker-build-and-push.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/docker-build-and-push.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/lint-and-format.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/lint-and-format.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/tests.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/tests.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/combined.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/combined.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/database.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middleware/auth.middleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/middleware/auth.middleware.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/validations/users.validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/validations/users.validation.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +77,7 @@
       <updated>1771890203419</updated>
       <workItem from="1771890204705" duration="311000" />
       <workItem from="1771947206294" duration="14131000" />
-      <workItem from="1772120047782" duration="27040000" />
+      <workItem from="1772120047782" duration="27466000" />
     </task>
     <servers />
   </component>
