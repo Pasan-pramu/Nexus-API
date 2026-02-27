@@ -10,6 +10,8 @@ import usersRoutes from '#routes/users.routes.js';
 import productRoutes from '#routes/product.routes.js';
 import categoryRoutes from '#routes/category.routes.js';
 import supplierRoutes from '#routes/supplier.routes.js';
+import purchaseRequestRoutes from '#routes/purchaseRequest.routes.js';
+import purchaseOrderRoutes from '#routes/purchaseOrder.routes.js';
 
 const app = express();
 
@@ -49,6 +51,8 @@ app.use('/api/users', usersRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/suppliers', supplierRoutes);
+app.use('/api/purchase-requests', purchaseRequestRoutes);
+app.use('/api/purchase-orders', purchaseOrderRoutes);
 
 // 404 handler for unknown routes
 app.use((req, res) => {
