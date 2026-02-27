@@ -15,6 +15,13 @@
       "when": 1772185745906,
       "tag": "0001_famous_dexter_bennett",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1772186320719,
+      "tag": "0002_lyrical_black_bolt",
+      "breakpoints": true
     }
   ]
 }

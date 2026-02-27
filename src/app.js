@@ -8,6 +8,7 @@ import authRoutes from '#routes/auth.routes.js';
 import securityMiddleware from '#middleware/security.middleware.js';
 import usersRoutes from '#routes/users.routes.js';
 import productRoutes from '#routes/product.routes.js';
+import categoryRoutes from '#routes/category.routes.js';
 
 const app = express();
 
@@ -45,6 +46,7 @@ app.get('/api', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/categories', categoryRoutes);
 
 // 404 handler for unknown routes
 app.use((req, res) => {
