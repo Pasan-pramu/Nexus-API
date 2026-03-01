@@ -4,102 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b695171e-4ba9-43d9-8694-9e275ad82db9" name="Changes" comment="add cross-env dependency and update various files for improved formatting and logging">
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/controllers/category.controller.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/controllers/inventory.controller.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/controllers/product.controller.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/controllers/purchaseOrder.controller.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/controllers/purchaseRequest.controller.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/controllers/supplier.controller.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/models/category.model.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/models/inventory.model.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/models/product.model.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/models/purchaseOrder.model.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/models/purchaseRequest.model.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/models/supplier.model.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/routes/category.routes.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/routes/inventory.routes.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/routes/product.routes.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/routes/purchaseOrder.routes.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/routes/purchaseRequest.routes.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/routes/supplier.routes.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/services/category.service.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/services/inventory.service.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/services/product.service.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/services/purchaseOrder.service.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/services/purchaseRequest.service.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/services/supplier.service.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/validations/category.validation.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/validations/inventory.validation.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/validations/product.validation.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/validations/purchaseOrder.validation.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/validations/purchaseRequest.validation.js.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/validations/supplier.validation.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_DOCUMENTATION.md" beforeDir="false" afterPath="$PROJECT_DIR$/API_DOCUMENTATION.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/clover.xml" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/clover.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/coverage-final.json" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/coverage-final.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/app.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/app.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/config/arcjet.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/config/arcjet.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/config/database.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/config/database.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/config/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/config/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/config/logger.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/config/logger.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/controllers/auth.controller.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/controllers/auth.controller.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/controllers/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/controllers/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/controllers/users.controller.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/controllers/users.controller.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/middleware/auth.middleware.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/middleware/auth.middleware.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/middleware/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/middleware/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/middleware/security.middleware.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/middleware/security.middleware.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/models/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/models/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/models/user.model.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/models/user.model.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/routes/auth.routes.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/routes/auth.routes.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/routes/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/routes/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/routes/users.routes.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/routes/users.routes.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/services/auth.service.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/services/auth.service.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/services/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/services/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/services/users.service.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/services/users.service.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/utils/cookies.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/utils/cookies.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/utils/format.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/utils/format.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/utils/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/utils/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/utils/jwt.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/utils/jwt.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/validations/auth.validation.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/validations/auth.validation.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/validations/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/validations/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/src/validations/users.validation.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/src/validations/users.validation.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov.info" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eslint.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/eslint.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/combined.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/combined.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/arcjet.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/arcjet.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/database.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/inventory.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/inventory.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/product.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/product.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/purchaseOrder.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/purchaseOrder.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/purchaseRequest.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/purchaseRequest.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middleware/security.middleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/middleware/security.middleware.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/category.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/category.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/inventory.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/inventory.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/product.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/product.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/purchaseOrder.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/purchaseOrder.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/purchaseRequest.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/purchaseRequest.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/inventory.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/inventory.routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/purchaseRequest.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/purchaseRequest.routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/inventory.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/inventory.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/product.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/product.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/purchaseOrder.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/purchaseOrder.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/purchaseRequest.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/purchaseRequest.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/supplier.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/supplier.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/validations/inventory.validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/validations/inventory.validation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/validations/product.validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/validations/product.validation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/validations/purchaseOrder.validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/validations/purchaseOrder.validation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/validations/purchaseRequest.validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/validations/purchaseRequest.validation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/supplier.service.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/supplier.service.test.js" afterDir="false" />
-    </list>
+    <list default="true" id="b695171e-4ba9-43d9-8694-9e275ad82db9" name="Changes" comment="update Docker workflows to use nexus-api image and improve testing steps" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -170,8 +75,25 @@
       <workItem from="1772120047782" duration="27743000" />
       <workItem from="1772176116328" duration="4837000" />
       <workItem from="1772208759882" duration="1846000" />
-      <workItem from="1772366353451" duration="1583000" />
+      <workItem from="1772366353451" duration="2067000" />
     </task>
+    <task id="LOCAL-00001" summary="add cross-env dependency and update various files for improved formatting and logging">
+      <option name="closed" value="true" />
+      <created>1772367988608</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1772367988608</updated>
+    </task>
+    <task id="LOCAL-00002" summary="update Docker workflows to use nexus-api image and improve testing steps">
+      <option name="closed" value="true" />
+      <created>1772368448810</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1772368448810</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,7 +105,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add cross-env dependency and update various files for improved formatting and logging" />
-    <option name="LAST_COMMIT_MESSAGE" value="add cross-env dependency and update various files for improved formatting and logging" />
+    <MESSAGE value="update Docker workflows to use nexus-api image and improve testing steps" />
+    <option name="LAST_COMMIT_MESSAGE" value="update Docker workflows to use nexus-api image and improve testing steps" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
