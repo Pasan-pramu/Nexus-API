@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b695171e-4ba9-43d9-8694-9e275ad82db9" name="Changes" comment="update Docker workflows to improve database migration conditions" />
+    <list default="true" id="b695171e-4ba9-43d9-8694-9e275ad82db9" name="Changes" comment="update Docker workflows to set up Node.js, install dependencies, and run linter">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/docker-deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/docker-deploy.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -75,7 +77,7 @@
       <workItem from="1772120047782" duration="27743000" />
       <workItem from="1772176116328" duration="4837000" />
       <workItem from="1772208759882" duration="1846000" />
-      <workItem from="1772366353451" duration="2361000" />
+      <workItem from="1772366353451" duration="2772000" />
     </task>
     <task id="LOCAL-00001" summary="add cross-env dependency and update various files for improved formatting and logging">
       <option name="closed" value="true" />
@@ -101,7 +103,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772368750807</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="update Docker workflows to set up Node.js, install dependencies, and run linter">
+      <option name="closed" value="true" />
+      <created>1772368989425</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1772368989425</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,7 +136,8 @@
     <MESSAGE value="add cross-env dependency and update various files for improved formatting and logging" />
     <MESSAGE value="update Docker workflows to use nexus-api image and improve testing steps" />
     <MESSAGE value="update Docker workflows to improve database migration conditions" />
-    <option name="LAST_COMMIT_MESSAGE" value="update Docker workflows to improve database migration conditions" />
+    <MESSAGE value="update Docker workflows to set up Node.js, install dependencies, and run linter" />
+    <option name="LAST_COMMIT_MESSAGE" value="update Docker workflows to set up Node.js, install dependencies, and run linter" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

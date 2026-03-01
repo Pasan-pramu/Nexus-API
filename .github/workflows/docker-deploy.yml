@@ -51,7 +51,6 @@ jobs:
           cache-to: type=gha,mode=max
           load: true
 
-
       - name: Test application health
         run: |
           # Start the container with required env vars
