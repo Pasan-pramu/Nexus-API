@@ -25,7 +25,8 @@ export const createNewProduct = async (req, res, next) => {
       });
     }
 
-    const { name, description, category, price, status, stock } = validationResult.data;
+    const { name, description, category, price, status, stock } =
+      validationResult.data;
 
     const product = await createProduct({
       name,

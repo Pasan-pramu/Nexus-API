@@ -266,3 +266,9 @@
 {"level":"info","message":"::ffff:172.19.0.1 - - [27/Feb/2026:20:02:01 +0000] \"GET / HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0\"","service":"Nexus-api"}
 {"level":"info","message":"::ffff:172.19.0.1 - - [27/Feb/2026:20:02:02 +0000] \"GET /favicon.ico HTTP/1.1\" 404 27 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0\"","service":"Nexus-api"}
 {"level":"info","message":"::ffff:172.19.0.1 - - [27/Feb/2026:20:02:11 +0000] \"GET /api/users HTTP/1.1\" 401 60 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0\"","service":"Nexus-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [01/Mar/2026:12:11:30 +0000] \"GET /health HTTP/1.1\" 200 73 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [01/Mar/2026:12:11:30 +0000] \"GET /api HTTP/1.1\" 200 53 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [01/Mar/2026:12:11:30 +0000] \"GET /nonexsistent HTTP/1.1\" 404 27 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [01/Mar/2026:12:18:49 +0000] \"GET /health HTTP/1.1\" 200 73 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [01/Mar/2026:12:18:50 +0000] \"GET /api HTTP/1.1\" 200 53 \"-\" \"-\"","service":"Nexus-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [01/Mar/2026:12:18:50 +0000] \"GET /nonexsistent HTTP/1.1\" 404 27 \"-\" \"-\"","service":"Nexus-api"}

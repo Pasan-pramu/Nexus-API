@@ -148,7 +148,9 @@ export const performStockAdjustment = async (req, res, next) => {
       adjustedBy: req.user.id,
     });
 
-    logger.info(`Stock adjusted for product ${product_id} by admin ${req.user.email}`);
+    logger.info(
+      `Stock adjusted for product ${product_id} by admin ${req.user.email}`
+    );
     res.json({
       message: 'Stock adjusted successfully',
       inventory: adjustedInventory,
@@ -189,11 +191,15 @@ export const updateProductThreshold = async (req, res, next) => {
 
     const { min_threshold } = validationResult.data;
 
-    logger.info(`Updating minimum threshold for product ${productId} to ${min_threshold}...`);
+    logger.info(
+      `Updating minimum threshold for product ${productId} to ${min_threshold}...`
+    );
 
     const updatedInventory = await updateMinThreshold(productId, min_threshold);
 
-    logger.info(`Threshold updated for product ${productId} by admin ${req.user.email}`);
+    logger.info(
+      `Threshold updated for product ${productId} by admin ${req.user.email}`
+    );
     res.json({
       message: 'Minimum threshold updated successfully',
       inventory: updatedInventory,

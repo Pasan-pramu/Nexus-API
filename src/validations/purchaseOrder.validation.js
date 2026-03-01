@@ -22,7 +22,10 @@ export const updatePurchaseOrderSchema = z.object({
 });
 
 export const purchaseOrderIdSchema = z.object({
-  id: z.string().regex(/^\d+$/, 'Invalid purchase order ID format').transform(Number),
+  id: z
+    .string()
+    .regex(/^\d+$/, 'Invalid purchase order ID format')
+    .transform(Number),
 });
 
 export const purchaseOrderQuerySchema = z.object({

@@ -28,19 +28,20 @@ app.use(
   })
 );
 
-app.use(securityMiddleware);
-
-app.get('/', (req, res) => {
-  logger.info('Hello from Nexus!');
-  res.status(200).send('Hello from Nexus');
-});
-
+// Health check endpoint - before security middleware so it's always accessible
 app.get('/health', (req, res) => {
   res.status(200).json({
     status: 'ok',
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
   });
+});
+
+app.use(securityMiddleware);
+
+app.get('/', (req, res) => {
+  logger.info('Hello from Nexus!');
+  res.status(200).send('Hello from Nexus');
 });
 
 app.get('/api', (req, res) => {

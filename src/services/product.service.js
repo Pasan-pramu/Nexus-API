@@ -3,7 +3,14 @@ import { db } from '#config/database.js';
 import { products } from '#models/product.model.js';
 import { eq, and, or, ilike } from 'drizzle-orm';
 
-export const createProduct = async ({ name, description, category, price, status, stock }) => {
+export const createProduct = async ({
+  name,
+  description,
+  category,
+  price,
+  status,
+  stock,
+}) => {
   try {
     const [newProduct] = await db
       .insert(products)

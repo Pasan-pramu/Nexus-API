@@ -8,7 +8,10 @@ import {
   approvePurchaseRequestById,
   rejectPurchaseRequestById,
 } from '#controllers/purchaseRequest.controller.js';
-import { authenticate, requireAdminOrManager } from '#middleware/auth.middleware.js';
+import {
+  authenticate,
+  requireAdminOrManager,
+} from '#middleware/auth.middleware.js';
 
 const router = express.Router();
 
@@ -22,8 +25,18 @@ router.put('/:id', authenticate, updatePurchaseRequestById);
 
 router.delete('/:id', authenticate, deletePurchaseRequestById);
 
-router.post('/:id/approve', authenticate, requireAdminOrManager, approvePurchaseRequestById);
+router.post(
+  '/:id/approve',
+  authenticate,
+  requireAdminOrManager,
+  approvePurchaseRequestById
+);
 
-router.post('/:id/reject', authenticate, requireAdminOrManager, rejectPurchaseRequestById);
+router.post(
+  '/:id/reject',
+  authenticate,
+  requireAdminOrManager,
+  rejectPurchaseRequestById
+);
 
 export default router;

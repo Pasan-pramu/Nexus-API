@@ -23,7 +23,10 @@ export const getAllInventory = async (filters = {}) => {
         product_name: products.name,
         quantity: inventory.quantity,
         min_threshold: inventory.min_threshold,
-        is_low_stock: sql`CASE WHEN ${inventory.quantity} < ${inventory.min_threshold} THEN true ELSE false END`.as('is_low_stock'),
+        is_low_stock:
+          sql`CASE WHEN ${inventory.quantity} < ${inventory.min_threshold} THEN true ELSE false END`.as(
+            'is_low_stock'
+          ),
         created_at: inventory.created_at,
         updated_at: inventory.updated_at,
       })
@@ -50,7 +53,10 @@ export const getInventoryById = async id => {
         product_name: products.name,
         quantity: inventory.quantity,
         min_threshold: inventory.min_threshold,
-        is_low_stock: sql`CASE WHEN ${inventory.quantity} < ${inventory.min_threshold} THEN true ELSE false END`.as('is_low_stock'),
+        is_low_stock:
+          sql`CASE WHEN ${inventory.quantity} < ${inventory.min_threshold} THEN true ELSE false END`.as(
+            'is_low_stock'
+          ),
         created_at: inventory.created_at,
         updated_at: inventory.updated_at,
       })
@@ -75,7 +81,10 @@ export const getInventoryByProductId = async productId => {
         product_name: products.name,
         quantity: inventory.quantity,
         min_threshold: inventory.min_threshold,
-        is_low_stock: sql`CASE WHEN ${inventory.quantity} < ${inventory.min_threshold} THEN true ELSE false END`.as('is_low_stock'),
+        is_low_stock:
+          sql`CASE WHEN ${inventory.quantity} < ${inventory.min_threshold} THEN true ELSE false END`.as(
+            'is_low_stock'
+          ),
         created_at: inventory.created_at,
         updated_at: inventory.updated_at,
       })
@@ -100,7 +109,9 @@ export const getLowStockAlerts = async () => {
         product_name: products.name,
         quantity: inventory.quantity,
         min_threshold: inventory.min_threshold,
-        shortage: sql`${inventory.min_threshold} - ${inventory.quantity}`.as('shortage'),
+        shortage: sql`${inventory.min_threshold} - ${inventory.quantity}`.as(
+          'shortage'
+        ),
         created_at: inventory.created_at,
         updated_at: inventory.updated_at,
       })
@@ -116,7 +127,12 @@ export const getLowStockAlerts = async () => {
   }
 };
 
-export const adjustStock = async ({ productId, quantity, reason, adjustedBy }) => {
+export const adjustStock = async ({
+  productId,
+  quantity,
+  reason,
+  adjustedBy,
+}) => {
   try {
     // Check if inventory record exists for this product
     let [existingInventory] = await db
@@ -200,7 +216,9 @@ export const updateMinThreshold = async (productId, minThreshold) => {
           updated_at: inventory.updated_at,
         });
 
-      logger.info(`Created new inventory record for product ${productId} with threshold ${minThreshold}`);
+      logger.info(
+        `Created new inventory record for product ${productId} with threshold ${minThreshold}`
+      );
       return newInventory;
     }
 
@@ -220,7 +238,9 @@ export const updateMinThreshold = async (productId, minThreshold) => {
         updated_at: inventory.updated_at,
       });
 
-    logger.info(`Minimum threshold updated for product ${productId}: ${existingInventory.min_threshold} -> ${minThreshold}`);
+    logger.info(
+      `Minimum threshold updated for product ${productId}: ${existingInventory.min_threshold} -> ${minThreshold}`
+    );
     return updatedInventory;
   } catch (e) {
     logger.error('Error updating min threshold', e);
@@ -248,7 +268,9 @@ export const syncInventoryWithProduct = async (productId, stockQuantity) => {
         })
         .returning();
 
-      logger.info(`Created inventory record for product ${productId} with quantity ${stockQuantity}`);
+      logger.info(
+        `Created inventory record for product ${productId} with quantity ${stockQuantity}`
+      );
       return newInventory;
     }
 
@@ -262,7 +284,9 @@ export const syncInventoryWithProduct = async (productId, stockQuantity) => {
       .where(eq(inventory.product_id, productId))
       .returning();
 
-    logger.info(`Synced inventory for product ${productId} to quantity ${stockQuantity}`);
+    logger.info(
+      `Synced inventory for product ${productId} to quantity ${stockQuantity}`
+    );
     return updatedInventory;
   } catch (e) {
     logger.error('Error syncing inventory with product', e);

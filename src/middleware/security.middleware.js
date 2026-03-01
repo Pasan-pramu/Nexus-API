@@ -16,6 +16,7 @@ const securityMiddleware = async (req, res, next) => {
         limit = 10;
         break;
       case 'guest':
+      default:
         limit = 5;
         break;
     }
@@ -75,7 +76,7 @@ const securityMiddleware = async (req, res, next) => {
   } catch (e) {
     console.error('Arcjet middleware error:', e);
     res.status(500).json({
-      errro: 'Internal server error',
+      error: 'Internal server error',
       message: 'Something went wrong with security middleware',
     });
   }

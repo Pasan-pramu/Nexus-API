@@ -35,6 +35,7 @@
 All authenticated endpoints require a valid JWT token stored in an HTTP-only cookie named `token`. The token is automatically set on sign-up and sign-in, and cleared on sign-out.
 
 **JWT Payload:**
+
 ```json
 {
   "id": 1,
@@ -45,18 +46,18 @@ All authenticated endpoints require a valid JWT token stored in an HTTP-only coo
 
 ### Roles
 
-| Role      | Description                                                      |
-|-----------|------------------------------------------------------------------|
-| `user`    | Default role. Can perform basic CRUD operations.                 |
-| `admin`   | Full access. Can delete resources, adjust stock, cancel POs.     |
-| `manager` | Can approve/reject purchase requests (alongside admin).          |
+| Role      | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| `user`    | Default role. Can perform basic CRUD operations.             |
+| `admin`   | Full access. Can delete resources, adjust stock, cancel POs. |
+| `manager` | Can approve/reject purchase requests (alongside admin).      |
 
 ### Rate Limiting (Arcjet)
 
 Requests are rate-limited via a sliding window (1 minute) based on the user's role:
 
 | Role    | Max Requests / Minute |
-|---------|-----------------------|
+| ------- | --------------------- |
 | `admin` | 20                    |
 | `user`  | 10                    |
 | `guest` | 5                     |
@@ -71,24 +72,23 @@ Arcjet's `detectBot` blocks automated clients. Allowed bot categories: `SEARCH_E
 
 These error responses can be returned from any endpoint:
 
-| Status | Error                | Description                                       |
-|--------|----------------------|---------------------------------------------------|
-| `400`  | Validation failed    | Request body or params failed Zod validation      |
-| `401`  | Unauthorized         | Missing or invalid/expired JWT token               |
-| `403`  | Forbidden            | Insufficient role/permissions                      |
-| `403`  | Forbidden            | Bot detection triggered                            |
-| `403`  | Forbidden            | Shield protection triggered                        |
-| `404`  | Route not found      | Endpoint does not exist                            |
-| `429`  | Too Many Requests    | Rate limit exceeded                                |
-| `500`  | Internal server error| Unexpected server error                            |
+| Status | Error                 | Description                                  |
+| ------ | --------------------- | -------------------------------------------- |
+| `400`  | Validation failed     | Request body or params failed Zod validation |
+| `401`  | Unauthorized          | Missing or invalid/expired JWT token         |
+| `403`  | Forbidden             | Insufficient role/permissions                |
+| `403`  | Forbidden             | Bot detection triggered                      |
+| `403`  | Forbidden             | Shield protection triggered                  |
+| `404`  | Route not found       | Endpoint does not exist                      |
+| `429`  | Too Many Requests     | Rate limit exceeded                          |
+| `500`  | Internal server error | Unexpected server error                      |
 
 **Validation Error Response Format:**
+
 ```json
 {
   "error": "Validation failed",
-  "details": [
-    { "field": "email", "message": "Invalid email" }
-  ]
+  "details": [{ "field": "email", "message": "Invalid email" }]
 }
 ```
 
@@ -102,13 +102,14 @@ These error responses can be returned from any endpoint:
 
 #### `GET /`
 
-| Field           | Value                                        |
-|-----------------|----------------------------------------------|
-| **Description** | Root endpoint, returns a hello message        |
-| **Auth**        | ❌ No                                         |
-| **Role**        | Any                                           |
+| Field           | Value                                  |
+| --------------- | -------------------------------------- |
+| **Description** | Root endpoint, returns a hello message |
+| **Auth**        | ❌ No                                  |
+| **Role**        | Any                                    |
 
 **Success Response (200):**
+
 ```
 Hello from Nexus
 ```
@@ -117,13 +118,14 @@ Hello from Nexus
 
 #### `GET /health`
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
-| **Description** | Health check endpoint                          |
-| **Auth**        | ❌ No                                          |
-| **Role**        | Any                                            |
+| Field           | Value                 |
+| --------------- | --------------------- |
+| **Description** | Health check endpoint |
+| **Auth**        | ❌ No                 |
+| **Role**        | Any                   |
 
 **Success Response (200):**
+
 ```json
 {
   "status": "ok",
@@ -136,13 +138,14 @@ Hello from Nexus
 
 #### `GET /api`
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
-| **Description** | API welcome message                            |
-| **Auth**        | ❌ No                                          |
-| **Role**        | Any                                            |
+| Field           | Value               |
+| --------------- | ------------------- |
+| **Description** | API welcome message |
+| **Auth**        | ❌ No               |
+| **Role**        | Any                 |
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Welcome to the Nexus API. It is Running"
@@ -159,13 +162,14 @@ Base path: `/api/auth`
 
 #### `POST /api/auth/sign-up`
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
-| **Description** | Register a new user                            |
-| **Auth**        | ❌ No                                          |
-| **Role**        | Any                                            |
+| Field           | Value               |
+| --------------- | ------------------- |
+| **Description** | Register a new user |
+| **Auth**        | ❌ No               |
+| **Role**        | Any                 |
 
 **Request Body:**
+
 ```json
 {
   "name": "John Doe",
@@ -175,14 +179,15 @@ Base path: `/api/auth`
 }
 ```
 
-| Field      | Type     | Required | Constraints                                  |
-|------------|----------|----------|----------------------------------------------|
-| `name`     | `string` | ✅       | Min 2, max 255 chars, trimmed                |
-| `email`    | `string` | ✅       | Valid email, max 255, lowercased, trimmed     |
-| `password` | `string` | ✅       | Min 6, max 128 chars                         |
-| `role`     | `string` | ❌       | `"user"` or `"admin"`. Default: `"user"`     |
+| Field      | Type     | Required | Constraints                               |
+| ---------- | -------- | -------- | ----------------------------------------- |
+| `name`     | `string` | ✅       | Min 2, max 255 chars, trimmed             |
+| `email`    | `string` | ✅       | Valid email, max 255, lowercased, trimmed |
+| `password` | `string` | ✅       | Min 6, max 128 chars                      |
+| `role`     | `string` | ❌       | `"user"` or `"admin"`. Default: `"user"`  |
 
 **Success Response (201):**
+
 ```json
 {
   "message": "User registered",
@@ -199,22 +204,23 @@ Base path: `/api/auth`
 
 **Error Responses:**
 
-| Status | Condition                  | Response                                       |
-|--------|----------------------------|-------------------------------------------------|
-| `400`  | Validation failed          | `{ "error": "Validation failed", "details": [...] }` |
-| `409`  | Email already exists       | `{ "error": "Email already exist" }`             |
+| Status | Condition            | Response                                             |
+| ------ | -------------------- | ---------------------------------------------------- |
+| `400`  | Validation failed    | `{ "error": "Validation failed", "details": [...] }` |
+| `409`  | Email already exists | `{ "error": "Email already exist" }`                 |
 
 ---
 
 #### `POST /api/auth/sign-in`
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
-| **Description** | Authenticate and sign in                       |
-| **Auth**        | ❌ No                                          |
-| **Role**        | Any                                            |
+| Field           | Value                    |
+| --------------- | ------------------------ |
+| **Description** | Authenticate and sign in |
+| **Auth**        | ❌ No                    |
+| **Role**        | Any                      |
 
 **Request Body:**
+
 ```json
 {
   "email": "john@example.com",
@@ -223,11 +229,12 @@ Base path: `/api/auth`
 ```
 
 | Field      | Type     | Required | Constraints                      |
-|------------|----------|----------|----------------------------------|
+| ---------- | -------- | -------- | -------------------------------- |
 | `email`    | `string` | ✅       | Valid email, lowercased, trimmed |
-| `password` | `string` | ✅       | Min 1 char                      |
+| `password` | `string` | ✅       | Min 1 char                       |
 
 **Success Response (200):**
+
 ```json
 {
   "message": "User signed in successfully",
@@ -244,24 +251,25 @@ Base path: `/api/auth`
 
 **Error Responses:**
 
-| Status | Condition                       | Response                                       |
-|--------|---------------------------------|-------------------------------------------------|
-| `400`  | Validation failed               | `{ "error": "Validation failed", "details": [...] }` |
-| `401`  | Invalid email or password       | `{ "error": "Invalid credentials" }`             |
+| Status | Condition                 | Response                                             |
+| ------ | ------------------------- | ---------------------------------------------------- |
+| `400`  | Validation failed         | `{ "error": "Validation failed", "details": [...] }` |
+| `401`  | Invalid email or password | `{ "error": "Invalid credentials" }`                 |
 
 ---
 
 #### `POST /api/auth/sign-out`
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
-| **Description** | Sign out and clear auth cookie                 |
-| **Auth**        | ❌ No                                          |
-| **Role**        | Any                                            |
+| Field           | Value                          |
+| --------------- | ------------------------------ |
+| **Description** | Sign out and clear auth cookie |
+| **Auth**        | ❌ No                          |
+| **Role**        | Any                            |
 
 **Request Body:** None
 
 **Success Response (200):**
+
 ```json
 {
   "message": "User signed out successfully"
@@ -280,15 +288,16 @@ Base path: `/api/users`
 
 #### `GET /api/users`
 
-| Field           | Value                                          |
-|-----------------|------------------------------------------------|
-| **Description** | Get all users                                   |
-| **Auth**        | ✅ Yes                                          |
-| **Role**        | Any authenticated user                          |
+| Field           | Value                  |
+| --------------- | ---------------------- |
+| **Description** | Get all users          |
+| **Auth**        | ✅ Yes                 |
+| **Role**        | Any authenticated user |
 
 **Request Body:** None
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Successfully retrieved all users",
@@ -310,19 +319,20 @@ Base path: `/api/users`
 
 #### `GET /api/users/:id`
 
-| Field           | Value                                          |
-|-----------------|------------------------------------------------|
-| **Description** | Get a single user by ID                         |
-| **Auth**        | ✅ Yes                                          |
-| **Role**        | Any authenticated user                          |
+| Field           | Value                   |
+| --------------- | ----------------------- |
+| **Description** | Get a single user by ID |
+| **Auth**        | ✅ Yes                  |
+| **Role**        | Any authenticated user  |
 
 **URL Parameters:**
 
-| Param | Type     | Constraints                |
-|-------|----------|----------------------------|
+| Param | Type     | Constraints               |
+| ----- | -------- | ------------------------- |
 | `id`  | `string` | Numeric string (e.g. "1") |
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Successfully retrieved user",
@@ -339,28 +349,29 @@ Base path: `/api/users`
 
 **Error Responses:**
 
-| Status | Condition         | Response                                         |
-|--------|-------------------|--------------------------------------------------|
-| `400`  | Invalid ID format | `{ "error": "Validation failed", "details": [...] }` |
+| Status | Condition         | Response                                                |
+| ------ | ----------------- | ------------------------------------------------------- |
+| `400`  | Invalid ID format | `{ "error": "Validation failed", "details": [...] }`    |
 | `404`  | User not found    | `{ "error": "Not found", "message": "User not found" }` |
 
 ---
 
 #### `PUT /api/users/:id`
 
-| Field           | Value                                          |
-|-----------------|------------------------------------------------|
-| **Description** | Update a user by ID                             |
-| **Auth**        | ✅ Yes                                          |
+| Field           | Value                                                |
+| --------------- | ---------------------------------------------------- |
+| **Description** | Update a user by ID                                  |
+| **Auth**        | ✅ Yes                                               |
 | **Role**        | Own account or Admin (Admin required to change role) |
 
 **URL Parameters:**
 
-| Param | Type     | Constraints                |
-|-------|----------|----------------------------|
+| Param | Type     | Constraints               |
+| ----- | -------- | ------------------------- |
 | `id`  | `string` | Numeric string (e.g. "1") |
 
 **Request Body:**
+
 ```json
 {
   "name": "Jane Doe",
@@ -370,14 +381,15 @@ Base path: `/api/users`
 }
 ```
 
-| Field      | Type     | Required | Constraints                                   |
-|------------|----------|----------|-----------------------------------------------|
-| `name`     | `string` | ❌       | Min 2, max 255 chars, trimmed                 |
-| `email`    | `string` | ❌       | Valid email, max 255, lowercased, trimmed      |
-| `password` | `string` | ❌       | Min 6, max 128 chars                          |
-| `role`     | `string` | ❌       | `"user"` or `"admin"` — **Admin only**        |
+| Field      | Type     | Required | Constraints                               |
+| ---------- | -------- | -------- | ----------------------------------------- |
+| `name`     | `string` | ❌       | Min 2, max 255 chars, trimmed             |
+| `email`    | `string` | ❌       | Valid email, max 255, lowercased, trimmed |
+| `password` | `string` | ❌       | Min 6, max 128 chars                      |
+| `role`     | `string` | ❌       | `"user"` or `"admin"` — **Admin only**    |
 
 **Success Response (200):**
+
 ```json
 {
   "message": "User updated successfully",
@@ -392,30 +404,31 @@ Base path: `/api/users`
 
 **Error Responses:**
 
-| Status | Condition                        | Response                                                 |
-|--------|----------------------------------|----------------------------------------------------------|
-| `400`  | Validation failed                | `{ "error": "Validation failed", "details": [...] }`    |
-| `403`  | Updating other user (non-admin)  | `{ "error": "Forbidden", "message": "You can only update your own information" }` |
-| `403`  | Changing role (non-admin)        | `{ "error": "Forbidden", "message": "Only admin users can change roles" }` |
-| `404`  | User not found                   | `{ "error": "Not found", "message": "User not found" }` |
+| Status | Condition                       | Response                                                                          |
+| ------ | ------------------------------- | --------------------------------------------------------------------------------- |
+| `400`  | Validation failed               | `{ "error": "Validation failed", "details": [...] }`                              |
+| `403`  | Updating other user (non-admin) | `{ "error": "Forbidden", "message": "You can only update your own information" }` |
+| `403`  | Changing role (non-admin)       | `{ "error": "Forbidden", "message": "Only admin users can change roles" }`        |
+| `404`  | User not found                  | `{ "error": "Not found", "message": "User not found" }`                           |
 
 ---
 
 #### `DELETE /api/users/:id`
 
-| Field           | Value                                          |
-|-----------------|------------------------------------------------|
-| **Description** | Delete a user by ID                             |
-| **Auth**        | ✅ Yes                                          |
-| **Role**        | Own account or Admin                            |
+| Field           | Value                |
+| --------------- | -------------------- |
+| **Description** | Delete a user by ID  |
+| **Auth**        | ✅ Yes               |
+| **Role**        | Own account or Admin |
 
 **URL Parameters:**
 
-| Param | Type     | Constraints                |
-|-------|----------|----------------------------|
+| Param | Type     | Constraints               |
+| ----- | -------- | ------------------------- |
 | `id`  | `string` | Numeric string (e.g. "1") |
 
 **Success Response (200):**
+
 ```json
 {
   "message": "User deleted successfully",
@@ -425,11 +438,11 @@ Base path: `/api/users`
 
 **Error Responses:**
 
-| Status | Condition                          | Response                                                  |
-|--------|------------------------------------|-----------------------------------------------------------|
-| `400`  | Invalid ID format                  | `{ "error": "Validation failed", "details": [...] }`     |
-| `403`  | Deleting other user (non-admin)    | `{ "error": "Forbidden", "message": "You can only delete your own account" }` |
-| `404`  | User not found                     | `{ "error": "Not found", "message": "User not found" }`  |
+| Status | Condition                       | Response                                                                      |
+| ------ | ------------------------------- | ----------------------------------------------------------------------------- |
+| `400`  | Invalid ID format               | `{ "error": "Validation failed", "details": [...] }`                          |
+| `403`  | Deleting other user (non-admin) | `{ "error": "Forbidden", "message": "You can only delete your own account" }` |
+| `404`  | User not found                  | `{ "error": "Not found", "message": "User not found" }`                       |
 
 ---
 
@@ -441,13 +454,14 @@ Base path: `/api/categories`
 
 #### `POST /api/categories`
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
-| **Description** | Create a new category                          |
-| **Auth**        | ✅ Yes                                         |
-| **Role**        | Any authenticated user                         |
+| Field           | Value                  |
+| --------------- | ---------------------- |
+| **Description** | Create a new category  |
+| **Auth**        | ✅ Yes                 |
+| **Role**        | Any authenticated user |
 
 **Request Body:**
+
 ```json
 {
   "name": "Electronics",
@@ -457,12 +471,13 @@ Base path: `/api/categories`
 ```
 
 | Field         | Type      | Required | Constraints                   |
-|---------------|-----------|----------|-------------------------------|
-| `name`        | `string`  | ✅       | Min 2, max 100 chars, trimmed|
-| `description` | `string`  | ❌       | Max 500 chars, trimmed       |
-| `isActive`    | `boolean` | ❌       | Default: `true`              |
+| ------------- | --------- | -------- | ----------------------------- |
+| `name`        | `string`  | ✅       | Min 2, max 100 chars, trimmed |
+| `description` | `string`  | ❌       | Max 500 chars, trimmed        |
+| `isActive`    | `boolean` | ❌       | Default: `true`               |
 
 **Success Response (201):**
+
 ```json
 {
   "message": "Category created successfully",
@@ -479,22 +494,23 @@ Base path: `/api/categories`
 
 **Error Responses:**
 
-| Status | Condition                    | Response                                                    |
-|--------|------------------------------|-------------------------------------------------------------|
-| `400`  | Validation failed            | `{ "error": "Validation failed", "details": [...] }`       |
+| Status | Condition                    | Response                                                                       |
+| ------ | ---------------------------- | ------------------------------------------------------------------------------ |
+| `400`  | Validation failed            | `{ "error": "Validation failed", "details": [...] }`                           |
 | `409`  | Category name already exists | `{ "error": "Conflict", "message": "Category with this name already exists" }` |
 
 ---
 
 #### `GET /api/categories`
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
-| **Description** | Get all categories                             |
-| **Auth**        | ✅ Yes                                         |
-| **Role**        | Any authenticated user                         |
+| Field           | Value                  |
+| --------------- | ---------------------- |
+| **Description** | Get all categories     |
+| **Auth**        | ✅ Yes                 |
+| **Role**        | Any authenticated user |
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Successfully retrieved all categories",
@@ -507,13 +523,14 @@ Base path: `/api/categories`
 
 #### `GET /api/categories/:id`
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
-| **Description** | Get a single category by ID                    |
-| **Auth**        | ✅ Yes                                         |
-| **Role**        | Any authenticated user                         |
+| Field           | Value                       |
+| --------------- | --------------------------- |
+| **Description** | Get a single category by ID |
+| **Auth**        | ✅ Yes                      |
+| **Role**        | Any authenticated user      |
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Successfully retrieved category",
@@ -530,22 +547,23 @@ Base path: `/api/categories`
 
 **Error Responses:**
 
-| Status | Condition         | Response                                             |
-|--------|-------------------|------------------------------------------------------|
-| `400`  | Invalid ID format | `{ "error": "Validation failed", "details": [...] }` |
+| Status | Condition         | Response                                                    |
+| ------ | ----------------- | ----------------------------------------------------------- |
+| `400`  | Invalid ID format | `{ "error": "Validation failed", "details": [...] }`        |
 | `404`  | Not found         | `{ "error": "Not found", "message": "Category not found" }` |
 
 ---
 
 #### `PUT /api/categories/:id`
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
-| **Description** | Update a category by ID                        |
-| **Auth**        | ✅ Yes                                         |
-| **Role**        | Any authenticated user                         |
+| Field           | Value                   |
+| --------------- | ----------------------- |
+| **Description** | Update a category by ID |
+| **Auth**        | ✅ Yes                  |
+| **Role**        | Any authenticated user  |
 
 **Request Body:**
+
 ```json
 {
   "name": "Updated Electronics",
@@ -555,12 +573,13 @@ Base path: `/api/categories`
 ```
 
 | Field         | Type      | Required | Constraints                   |
-|---------------|-----------|----------|-------------------------------|
-| `name`        | `string`  | ❌       | Min 2, max 100 chars, trimmed|
-| `description` | `string`  | ❌       | Max 500 chars, trimmed       |
-| `isActive`    | `boolean` | ❌       |                              |
+| ------------- | --------- | -------- | ----------------------------- |
+| `name`        | `string`  | ❌       | Min 2, max 100 chars, trimmed |
+| `description` | `string`  | ❌       | Max 500 chars, trimmed        |
+| `isActive`    | `boolean` | ❌       |                               |
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Category updated successfully",
@@ -570,23 +589,24 @@ Base path: `/api/categories`
 
 **Error Responses:**
 
-| Status | Condition                    | Response                                                    |
-|--------|------------------------------|-------------------------------------------------------------|
-| `400`  | Validation failed            | `{ "error": "Validation failed", "details": [...] }`       |
-| `404`  | Category not found           | `{ "error": "Not found", "message": "Category not found" }` |
+| Status | Condition                    | Response                                                                       |
+| ------ | ---------------------------- | ------------------------------------------------------------------------------ |
+| `400`  | Validation failed            | `{ "error": "Validation failed", "details": [...] }`                           |
+| `404`  | Category not found           | `{ "error": "Not found", "message": "Category not found" }`                    |
 | `409`  | Category name already exists | `{ "error": "Conflict", "message": "Category with this name already exists" }` |
 
 ---
 
 #### `DELETE /api/categories/:id` 🔒 Admin Only
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
-| **Description** | Delete a category by ID                        |
-| **Auth**        | ✅ Yes                                         |
-| **Role**        | **Admin only**                                 |
+| Field           | Value                   |
+| --------------- | ----------------------- |
+| **Description** | Delete a category by ID |
+| **Auth**        | ✅ Yes                  |
+| **Role**        | **Admin only**          |
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Category deleted successfully",
@@ -596,11 +616,11 @@ Base path: `/api/categories`
 
 **Error Responses:**
 
-| Status | Condition          | Response                                             |
-|--------|--------------------|------------------------------------------------------|
-| `400`  | Invalid ID format  | `{ "error": "Validation failed", "details": [...] }` |
+| Status | Condition          | Response                                                       |
+| ------ | ------------------ | -------------------------------------------------------------- |
+| `400`  | Invalid ID format  | `{ "error": "Validation failed", "details": [...] }`           |
 | `403`  | Not admin          | `{ "error": "Forbidden", "message": "Admin access required" }` |
-| `404`  | Category not found | `{ "error": "Not found", "message": "Category not found" }` |
+| `404`  | Category not found | `{ "error": "Not found", "message": "Category not found" }`    |
 
 ---
 
@@ -612,13 +632,14 @@ Base path: `/api/products`
 
 #### `POST /api/products`
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
-| **Description** | Create a new product                           |
-| **Auth**        | ✅ Yes                                         |
-| **Role**        | Any authenticated user                         |
+| Field           | Value                  |
+| --------------- | ---------------------- |
+| **Description** | Create a new product   |
+| **Auth**        | ✅ Yes                 |
+| **Role**        | Any authenticated user |
 
 **Request Body:**
+
 ```json
 {
   "name": "Wireless Mouse",
@@ -630,16 +651,17 @@ Base path: `/api/products`
 }
 ```
 
-| Field         | Type              | Required | Constraints                                          |
-|---------------|-------------------|----------|------------------------------------------------------|
-| `name`        | `string`          | ✅       | Min 2, max 255 chars, trimmed                        |
-| `description` | `string`          | ❌       | Max 1000 chars, trimmed                              |
-| `category`    | `string`          | ✅       | Min 2, max 100 chars, trimmed                        |
-| `price`       | `number\|string`  | ✅       | Positive number or numeric string (up to 2 decimals) |
-| `status`      | `string`          | ❌       | `"active"`, `"inactive"`, `"out_of_stock"`. Default: `"active"` |
-| `stock`       | `number`          | ❌       | Non-negative integer. Default: `0`                   |
+| Field         | Type             | Required | Constraints                                                     |
+| ------------- | ---------------- | -------- | --------------------------------------------------------------- |
+| `name`        | `string`         | ✅       | Min 2, max 255 chars, trimmed                                   |
+| `description` | `string`         | ❌       | Max 1000 chars, trimmed                                         |
+| `category`    | `string`         | ✅       | Min 2, max 100 chars, trimmed                                   |
+| `price`       | `number\|string` | ✅       | Positive number or numeric string (up to 2 decimals)            |
+| `status`      | `string`         | ❌       | `"active"`, `"inactive"`, `"out_of_stock"`. Default: `"active"` |
+| `stock`       | `number`         | ❌       | Non-negative integer. Default: `0`                              |
 
 **Success Response (201):**
+
 ```json
 {
   "message": "Product created successfully",
@@ -661,23 +683,24 @@ Base path: `/api/products`
 
 #### `GET /api/products`
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
-| **Description** | Get all products (with optional filters)       |
-| **Auth**        | ✅ Yes                                         |
-| **Role**        | Any authenticated user                         |
+| Field           | Value                                    |
+| --------------- | ---------------------------------------- |
+| **Description** | Get all products (with optional filters) |
+| **Auth**        | ✅ Yes                                   |
+| **Role**        | Any authenticated user                   |
 
 **Query Parameters:**
 
-| Param      | Type     | Required | Constraints                                         |
-|------------|----------|----------|-----------------------------------------------------|
-| `category` | `string` | ❌       | Filter by category name                             |
-| `status`   | `string` | ❌       | `"active"`, `"inactive"`, `"out_of_stock"`          |
-| `search`   | `string` | ❌       | Search term                                          |
+| Param      | Type     | Required | Constraints                                |
+| ---------- | -------- | -------- | ------------------------------------------ |
+| `category` | `string` | ❌       | Filter by category name                    |
+| `status`   | `string` | ❌       | `"active"`, `"inactive"`, `"out_of_stock"` |
+| `search`   | `string` | ❌       | Search term                                |
 
 **Example:** `GET /api/products?category=Electronics&status=active`
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Successfully retrieved all products",
@@ -690,13 +713,14 @@ Base path: `/api/products`
 
 #### `GET /api/products/:id`
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
-| **Description** | Get a single product by ID                     |
-| **Auth**        | ✅ Yes                                         |
-| **Role**        | Any authenticated user                         |
+| Field           | Value                      |
+| --------------- | -------------------------- |
+| **Description** | Get a single product by ID |
+| **Auth**        | ✅ Yes                     |
+| **Role**        | Any authenticated user     |
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Successfully retrieved product",
@@ -706,22 +730,23 @@ Base path: `/api/products`
 
 **Error Responses:**
 
-| Status | Condition         | Response                                             |
-|--------|-------------------|------------------------------------------------------|
-| `400`  | Invalid ID format | `{ "error": "Validation failed", "details": [...] }` |
+| Status | Condition         | Response                                                   |
+| ------ | ----------------- | ---------------------------------------------------------- |
+| `400`  | Invalid ID format | `{ "error": "Validation failed", "details": [...] }`       |
 | `404`  | Not found         | `{ "error": "Not found", "message": "Product not found" }` |
 
 ---
 
 #### `PUT /api/products/:id`
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
-| **Description** | Update a product by ID                         |
-| **Auth**        | ✅ Yes                                         |
-| **Role**        | Any authenticated user                         |
+| Field           | Value                  |
+| --------------- | ---------------------- |
+| **Description** | Update a product by ID |
+| **Auth**        | ✅ Yes                 |
+| **Role**        | Any authenticated user |
 
 **Request Body:**
+
 ```json
 {
   "name": "Updated Mouse",
@@ -736,6 +761,7 @@ Base path: `/api/products`
 All fields are optional. Same constraints as create.
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Product updated successfully",
@@ -745,22 +771,23 @@ All fields are optional. Same constraints as create.
 
 **Error Responses:**
 
-| Status | Condition         | Response                                             |
-|--------|-------------------|------------------------------------------------------|
-| `400`  | Validation failed | `{ "error": "Validation failed", "details": [...] }` |
+| Status | Condition         | Response                                                   |
+| ------ | ----------------- | ---------------------------------------------------------- |
+| `400`  | Validation failed | `{ "error": "Validation failed", "details": [...] }`       |
 | `404`  | Product not found | `{ "error": "Not found", "message": "Product not found" }` |
 
 ---
 
 #### `DELETE /api/products/:id` 🔒 Admin Only
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
-| **Description** | Delete a product by ID                         |
-| **Auth**        | ✅ Yes                                         |
-| **Role**        | **Admin only**                                 |
+| Field           | Value                  |
+| --------------- | ---------------------- |
+| **Description** | Delete a product by ID |
+| **Auth**        | ✅ Yes                 |
+| **Role**        | **Admin only**         |
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Product deleted successfully",
@@ -770,11 +797,11 @@ All fields are optional. Same constraints as create.
 
 **Error Responses:**
 
-| Status | Condition         | Response                                             |
-|--------|-------------------|------------------------------------------------------|
-| `400`  | Invalid ID format | `{ "error": "Validation failed", "details": [...] }` |
+| Status | Condition         | Response                                                       |
+| ------ | ----------------- | -------------------------------------------------------------- |
+| `400`  | Invalid ID format | `{ "error": "Validation failed", "details": [...] }`           |
 | `403`  | Not admin         | `{ "error": "Forbidden", "message": "Admin access required" }` |
-| `404`  | Product not found | `{ "error": "Not found", "message": "Product not found" }` |
+| `404`  | Product not found | `{ "error": "Not found", "message": "Product not found" }`     |
 
 ---
 
@@ -786,13 +813,14 @@ Base path: `/api/suppliers`
 
 #### `POST /api/suppliers`
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
-| **Description** | Create a new supplier                          |
-| **Auth**        | ✅ Yes                                         |
-| **Role**        | Any authenticated user                         |
+| Field           | Value                  |
+| --------------- | ---------------------- |
+| **Description** | Create a new supplier  |
+| **Auth**        | ✅ Yes                 |
+| **Role**        | Any authenticated user |
 
 **Request Body:**
+
 ```json
 {
   "name": "ACME Corp",
@@ -803,15 +831,16 @@ Base path: `/api/suppliers`
 }
 ```
 
-| Field     | Type     | Required | Constraints                                           |
-|-----------|----------|----------|-------------------------------------------------------|
-| `name`    | `string` | ✅       | Min 2, max 255 chars, trimmed                         |
-| `email`   | `string` | ✅       | Valid email, max 255, lowercased, trimmed              |
-| `phone`   | `string` | ❌       | Max 50 chars, trimmed                                 |
-| `address` | `string` | ❌       | Max 1000 chars, trimmed                               |
+| Field     | Type     | Required | Constraints                                                  |
+| --------- | -------- | -------- | ------------------------------------------------------------ |
+| `name`    | `string` | ✅       | Min 2, max 255 chars, trimmed                                |
+| `email`   | `string` | ✅       | Valid email, max 255, lowercased, trimmed                    |
+| `phone`   | `string` | ❌       | Max 50 chars, trimmed                                        |
+| `address` | `string` | ❌       | Max 1000 chars, trimmed                                      |
 | `status`  | `string` | ❌       | `"active"`, `"inactive"`, `"suspended"`. Default: `"active"` |
 
 **Success Response (201):**
+
 ```json
 {
   "message": "Supplier created successfully",
@@ -830,22 +859,23 @@ Base path: `/api/suppliers`
 
 **Error Responses:**
 
-| Status | Condition                     | Response                                                        |
-|--------|-------------------------------|-----------------------------------------------------------------|
-| `400`  | Validation failed             | `{ "error": "Validation failed", "details": [...] }`           |
+| Status | Condition                     | Response                                                                        |
+| ------ | ----------------------------- | ------------------------------------------------------------------------------- |
+| `400`  | Validation failed             | `{ "error": "Validation failed", "details": [...] }`                            |
 | `409`  | Supplier email already exists | `{ "error": "Conflict", "message": "Supplier with this email already exists" }` |
 
 ---
 
 #### `GET /api/suppliers`
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
-| **Description** | Get all suppliers                              |
-| **Auth**        | ✅ Yes                                         |
-| **Role**        | Any authenticated user                         |
+| Field           | Value                  |
+| --------------- | ---------------------- |
+| **Description** | Get all suppliers      |
+| **Auth**        | ✅ Yes                 |
+| **Role**        | Any authenticated user |
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Successfully retrieved all suppliers",
@@ -858,13 +888,14 @@ Base path: `/api/suppliers`
 
 #### `GET /api/suppliers/:id`
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
-| **Description** | Get a single supplier by ID                    |
-| **Auth**        | ✅ Yes                                         |
-| **Role**        | Any authenticated user                         |
+| Field           | Value                       |
+| --------------- | --------------------------- |
+| **Description** | Get a single supplier by ID |
+| **Auth**        | ✅ Yes                      |
+| **Role**        | Any authenticated user      |
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Successfully retrieved supplier",
@@ -874,24 +905,25 @@ Base path: `/api/suppliers`
 
 **Error Responses:**
 
-| Status | Condition         | Response                                              |
-|--------|-------------------|-------------------------------------------------------|
-| `400`  | Invalid ID format | `{ "error": "Validation failed", "details": [...] }`  |
+| Status | Condition         | Response                                                    |
+| ------ | ----------------- | ----------------------------------------------------------- |
+| `400`  | Invalid ID format | `{ "error": "Validation failed", "details": [...] }`        |
 | `404`  | Not found         | `{ "error": "Not found", "message": "Supplier not found" }` |
 
 ---
 
 #### `PUT /api/suppliers/:id`
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
-| **Description** | Update a supplier by ID                        |
-| **Auth**        | ✅ Yes                                         |
-| **Role**        | Any authenticated user                         |
+| Field           | Value                   |
+| --------------- | ----------------------- |
+| **Description** | Update a supplier by ID |
+| **Auth**        | ✅ Yes                  |
+| **Role**        | Any authenticated user  |
 
 **Request Body:** All fields optional. Same constraints as create.
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Supplier updated successfully",
@@ -901,23 +933,24 @@ Base path: `/api/suppliers`
 
 **Error Responses:**
 
-| Status | Condition                     | Response                                                        |
-|--------|-------------------------------|-----------------------------------------------------------------|
-| `400`  | Validation failed             | `{ "error": "Validation failed", "details": [...] }`           |
-| `404`  | Supplier not found            | `{ "error": "Not found", "message": "Supplier not found" }`    |
+| Status | Condition                     | Response                                                                        |
+| ------ | ----------------------------- | ------------------------------------------------------------------------------- |
+| `400`  | Validation failed             | `{ "error": "Validation failed", "details": [...] }`                            |
+| `404`  | Supplier not found            | `{ "error": "Not found", "message": "Supplier not found" }`                     |
 | `409`  | Supplier email already exists | `{ "error": "Conflict", "message": "Supplier with this email already exists" }` |
 
 ---
 
 #### `DELETE /api/suppliers/:id` 🔒 Admin Only
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
-| **Description** | Delete a supplier by ID                        |
-| **Auth**        | ✅ Yes                                         |
-| **Role**        | **Admin only**                                 |
+| Field           | Value                   |
+| --------------- | ----------------------- |
+| **Description** | Delete a supplier by ID |
+| **Auth**        | ✅ Yes                  |
+| **Role**        | **Admin only**          |
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Supplier deleted successfully",
@@ -927,11 +960,11 @@ Base path: `/api/suppliers`
 
 **Error Responses:**
 
-| Status | Condition          | Response                                              |
-|--------|--------------------|-------------------------------------------------------|
-| `400`  | Invalid ID format  | `{ "error": "Validation failed", "details": [...] }`  |
+| Status | Condition          | Response                                                       |
+| ------ | ------------------ | -------------------------------------------------------------- |
+| `400`  | Invalid ID format  | `{ "error": "Validation failed", "details": [...] }`           |
 | `403`  | Not admin          | `{ "error": "Forbidden", "message": "Admin access required" }` |
-| `404`  | Supplier not found | `{ "error": "Not found", "message": "Supplier not found" }` |
+| `404`  | Supplier not found | `{ "error": "Not found", "message": "Supplier not found" }`    |
 
 ---
 
@@ -943,13 +976,14 @@ Base path: `/api/purchase-requests`
 
 #### `POST /api/purchase-requests`
 
-| Field           | Value                                            |
-|-----------------|--------------------------------------------------|
-| **Description** | Create a new purchase request                     |
-| **Auth**        | ✅ Yes                                            |
-| **Role**        | Any authenticated user                            |
+| Field           | Value                         |
+| --------------- | ----------------------------- |
+| **Description** | Create a new purchase request |
+| **Auth**        | ✅ Yes                        |
+| **Role**        | Any authenticated user        |
 
 **Request Body:**
+
 ```json
 {
   "items": [
@@ -958,26 +992,27 @@ Base path: `/api/purchase-requests`
       "product_name": "Wireless Mouse",
       "quantity": 50,
       "unit_price": 29.99,
-      "total_price": 1499.50
+      "total_price": 1499.5
     }
   ],
   "notes": "Urgent restock needed"
 }
 ```
 
-| Field               | Type     | Required | Constraints                 |
-|---------------------|----------|----------|-----------------------------|
-| `items`             | `array`  | ✅       | Min 1 item                  |
-| `items[].product_id`| `number` | ✅       | Positive integer            |
-| `items[].product_name`| `string` | ✅     | Min 1, max 255 chars        |
-| `items[].quantity`  | `number` | ✅       | Positive integer            |
-| `items[].unit_price`| `number` | ✅       | Positive number             |
-| `items[].total_price`| `number`| ✅       | Positive number             |
-| `notes`             | `string` | ❌       | Max 1000 chars, trimmed     |
+| Field                  | Type     | Required | Constraints             |
+| ---------------------- | -------- | -------- | ----------------------- |
+| `items`                | `array`  | ✅       | Min 1 item              |
+| `items[].product_id`   | `number` | ✅       | Positive integer        |
+| `items[].product_name` | `string` | ✅       | Min 1, max 255 chars    |
+| `items[].quantity`     | `number` | ✅       | Positive integer        |
+| `items[].unit_price`   | `number` | ✅       | Positive number         |
+| `items[].total_price`  | `number` | ✅       | Positive number         |
+| `notes`                | `string` | ❌       | Max 1000 chars, trimmed |
 
 > **Note:** `requester_id` is automatically set from the authenticated user's JWT token.
 
 **Success Response (201):**
+
 ```json
 {
   "message": "Purchase request created successfully",
@@ -1001,22 +1036,23 @@ Base path: `/api/purchase-requests`
 
 #### `GET /api/purchase-requests`
 
-| Field           | Value                                            |
-|-----------------|--------------------------------------------------|
+| Field           | Value                                             |
+| --------------- | ------------------------------------------------- |
 | **Description** | Get all purchase requests (with optional filters) |
 | **Auth**        | ✅ Yes                                            |
 | **Role**        | Any authenticated user                            |
 
 **Query Parameters:**
 
-| Param          | Type     | Required | Constraints                                       |
-|----------------|----------|----------|---------------------------------------------------|
+| Param          | Type     | Required | Constraints                                            |
+| -------------- | -------- | -------- | ------------------------------------------------------ |
 | `status`       | `string` | ❌       | `"pending"`, `"approved"`, `"rejected"`, `"cancelled"` |
-| `requester_id` | `string` | ❌       | Numeric string                                     |
+| `requester_id` | `string` | ❌       | Numeric string                                         |
 
 **Example:** `GET /api/purchase-requests?status=pending`
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Successfully retrieved all purchase requests",
@@ -1029,13 +1065,14 @@ Base path: `/api/purchase-requests`
 
 #### `GET /api/purchase-requests/:id`
 
-| Field           | Value                                            |
-|-----------------|--------------------------------------------------|
-| **Description** | Get a single purchase request by ID               |
-| **Auth**        | ✅ Yes                                            |
-| **Role**        | Any authenticated user                            |
+| Field           | Value                               |
+| --------------- | ----------------------------------- |
+| **Description** | Get a single purchase request by ID |
+| **Auth**        | ✅ Yes                              |
+| **Role**        | Any authenticated user              |
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Successfully retrieved purchase request",
@@ -1045,22 +1082,23 @@ Base path: `/api/purchase-requests`
 
 **Error Responses:**
 
-| Status | Condition         | Response                                                     |
-|--------|-------------------|--------------------------------------------------------------|
-| `400`  | Invalid ID format | `{ "error": "Validation failed", "details": [...] }`        |
+| Status | Condition         | Response                                                            |
+| ------ | ----------------- | ------------------------------------------------------------------- |
+| `400`  | Invalid ID format | `{ "error": "Validation failed", "details": [...] }`                |
 | `404`  | Not found         | `{ "error": "Not found", "message": "Purchase request not found" }` |
 
 ---
 
 #### `PUT /api/purchase-requests/:id`
 
-| Field           | Value                                            |
-|-----------------|--------------------------------------------------|
-| **Description** | Update a purchase request (only if pending)       |
-| **Auth**        | ✅ Yes                                            |
-| **Role**        | Any authenticated user                            |
+| Field           | Value                                       |
+| --------------- | ------------------------------------------- |
+| **Description** | Update a purchase request (only if pending) |
+| **Auth**        | ✅ Yes                                      |
+| **Role**        | Any authenticated user                      |
 
 **Request Body:**
+
 ```json
 {
   "items": [ ... ],
@@ -1071,6 +1109,7 @@ Base path: `/api/purchase-requests`
 All fields are optional. Same item constraints as create.
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Purchase request updated successfully",
@@ -1080,23 +1119,24 @@ All fields are optional. Same item constraints as create.
 
 **Error Responses:**
 
-| Status | Condition                   | Response                                                     |
-|--------|-----------------------------|--------------------------------------------------------------|
-| `400`  | Validation failed           | `{ "error": "Validation failed", "details": [...] }`        |
-| `400`  | PR is not pending           | `{ "error": "Bad request", "message": "Cannot update a purchase request that is not pending" }` |
-| `404`  | PR not found                | `{ "error": "Not found", "message": "Purchase request not found" }` |
+| Status | Condition         | Response                                                                                        |
+| ------ | ----------------- | ----------------------------------------------------------------------------------------------- |
+| `400`  | Validation failed | `{ "error": "Validation failed", "details": [...] }`                                            |
+| `400`  | PR is not pending | `{ "error": "Bad request", "message": "Cannot update a purchase request that is not pending" }` |
+| `404`  | PR not found      | `{ "error": "Not found", "message": "Purchase request not found" }`                             |
 
 ---
 
 #### `DELETE /api/purchase-requests/:id`
 
-| Field           | Value                                            |
-|-----------------|--------------------------------------------------|
-| **Description** | Delete a purchase request (only if pending)       |
-| **Auth**        | ✅ Yes                                            |
-| **Role**        | Any authenticated user                            |
+| Field           | Value                                       |
+| --------------- | ------------------------------------------- |
+| **Description** | Delete a purchase request (only if pending) |
+| **Auth**        | ✅ Yes                                      |
+| **Role**        | Any authenticated user                      |
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Purchase request deleted successfully",
@@ -1106,34 +1146,36 @@ All fields are optional. Same item constraints as create.
 
 **Error Responses:**
 
-| Status | Condition                   | Response                                                     |
-|--------|-----------------------------|--------------------------------------------------------------|
-| `400`  | Invalid ID format           | `{ "error": "Validation failed", "details": [...] }`        |
-| `400`  | PR is not pending           | `{ "error": "Bad request", "message": "Cannot delete a purchase request that is not pending" }` |
-| `404`  | PR not found                | `{ "error": "Not found", "message": "Purchase request not found" }` |
+| Status | Condition         | Response                                                                                        |
+| ------ | ----------------- | ----------------------------------------------------------------------------------------------- |
+| `400`  | Invalid ID format | `{ "error": "Validation failed", "details": [...] }`                                            |
+| `400`  | PR is not pending | `{ "error": "Bad request", "message": "Cannot delete a purchase request that is not pending" }` |
+| `404`  | PR not found      | `{ "error": "Not found", "message": "Purchase request not found" }`                             |
 
 ---
 
 #### `POST /api/purchase-requests/:id/approve` 🔒 Admin or Manager Only
 
-| Field           | Value                                            |
-|-----------------|--------------------------------------------------|
-| **Description** | Approve a pending purchase request                |
-| **Auth**        | ✅ Yes                                            |
-| **Role**        | **Admin or Manager only**                         |
+| Field           | Value                              |
+| --------------- | ---------------------------------- |
+| **Description** | Approve a pending purchase request |
+| **Auth**        | ✅ Yes                             |
+| **Role**        | **Admin or Manager only**          |
 
 **Request Body:**
+
 ```json
 {
   "notes": "Approved for Q1 budget"
 }
 ```
 
-| Field   | Type     | Required | Constraints           |
-|---------|----------|----------|-----------------------|
-| `notes` | `string` | ❌       | Max 500 chars, trimmed|
+| Field   | Type     | Required | Constraints            |
+| ------- | -------- | -------- | ---------------------- |
+| `notes` | `string` | ❌       | Max 500 chars, trimmed |
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Purchase request approved successfully",
@@ -1149,34 +1191,36 @@ All fields are optional. Same item constraints as create.
 
 **Error Responses:**
 
-| Status | Condition                   | Response                                                     |
-|--------|-----------------------------|--------------------------------------------------------------|
-| `400`  | PR is not pending           | `{ "error": "Bad request", "message": "Only pending purchase requests can be approved" }` |
-| `403`  | Not admin/manager           | `{ "error": "Forbidden", "message": "Admin or manager access required" }` |
-| `404`  | PR not found                | `{ "error": "Not found", "message": "Purchase request not found" }` |
+| Status | Condition         | Response                                                                                  |
+| ------ | ----------------- | ----------------------------------------------------------------------------------------- |
+| `400`  | PR is not pending | `{ "error": "Bad request", "message": "Only pending purchase requests can be approved" }` |
+| `403`  | Not admin/manager | `{ "error": "Forbidden", "message": "Admin or manager access required" }`                 |
+| `404`  | PR not found      | `{ "error": "Not found", "message": "Purchase request not found" }`                       |
 
 ---
 
 #### `POST /api/purchase-requests/:id/reject` 🔒 Admin or Manager Only
 
-| Field           | Value                                            |
-|-----------------|--------------------------------------------------|
-| **Description** | Reject a pending purchase request                 |
-| **Auth**        | ✅ Yes                                            |
-| **Role**        | **Admin or Manager only**                         |
+| Field           | Value                             |
+| --------------- | --------------------------------- |
+| **Description** | Reject a pending purchase request |
+| **Auth**        | ✅ Yes                            |
+| **Role**        | **Admin or Manager only**         |
 
 **Request Body:**
+
 ```json
 {
   "rejection_reason": "Budget exceeded for this quarter"
 }
 ```
 
-| Field              | Type     | Required | Constraints                    |
-|--------------------|----------|----------|--------------------------------|
+| Field              | Type     | Required | Constraints                   |
+| ------------------ | -------- | -------- | ----------------------------- |
 | `rejection_reason` | `string` | ✅       | Min 5, max 500 chars, trimmed |
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Purchase request rejected successfully",
@@ -1191,12 +1235,12 @@ All fields are optional. Same item constraints as create.
 
 **Error Responses:**
 
-| Status | Condition                   | Response                                                     |
-|--------|-----------------------------|--------------------------------------------------------------|
-| `400`  | Validation failed           | `{ "error": "Validation failed", "details": [...] }`        |
-| `400`  | PR is not pending           | `{ "error": "Bad request", "message": "Only pending purchase requests can be rejected" }` |
-| `403`  | Not admin/manager           | `{ "error": "Forbidden", "message": "Admin or manager access required" }` |
-| `404`  | PR not found                | `{ "error": "Not found", "message": "Purchase request not found" }` |
+| Status | Condition         | Response                                                                                  |
+| ------ | ----------------- | ----------------------------------------------------------------------------------------- |
+| `400`  | Validation failed | `{ "error": "Validation failed", "details": [...] }`                                      |
+| `400`  | PR is not pending | `{ "error": "Bad request", "message": "Only pending purchase requests can be rejected" }` |
+| `403`  | Not admin/manager | `{ "error": "Forbidden", "message": "Admin or manager access required" }`                 |
+| `404`  | PR not found      | `{ "error": "Not found", "message": "Purchase request not found" }`                       |
 
 ---
 
@@ -1209,12 +1253,13 @@ Base path: `/api/purchase-orders`
 #### `POST /api/purchase-orders`
 
 | Field           | Value                                                     |
-|-----------------|-----------------------------------------------------------|
-| **Description** | Create a purchase order from an approved purchase request  |
-| **Auth**        | ✅ Yes                                                     |
-| **Role**        | Any authenticated user                                     |
+| --------------- | --------------------------------------------------------- |
+| **Description** | Create a purchase order from an approved purchase request |
+| **Auth**        | ✅ Yes                                                    |
+| **Role**        | Any authenticated user                                    |
 
 **Request Body:**
+
 ```json
 {
   "supplier_id": 1,
@@ -1225,26 +1270,27 @@ Base path: `/api/purchase-orders`
       "product_name": "Wireless Mouse",
       "quantity": 50,
       "unit_price": 29.99,
-      "total_price": 1499.50
+      "total_price": 1499.5
     }
   ],
   "notes": "Rush delivery requested"
 }
 ```
 
-| Field               | Type     | Required | Constraints                 |
-|---------------------|----------|----------|-----------------------------|
-| `supplier_id`       | `number` | ✅       | Positive integer            |
-| `pr_id`             | `number` | ✅       | Positive integer (must reference an **approved** PR) |
-| `items`             | `array`  | ✅       | Min 1 item                  |
-| `items[].product_id`| `number` | ✅       | Positive integer            |
-| `items[].product_name`| `string` | ✅     | Min 1, max 255 chars        |
-| `items[].quantity`  | `number` | ✅       | Positive integer            |
-| `items[].unit_price`| `number` | ✅       | Positive number             |
-| `items[].total_price`| `number`| ✅       | Positive number             |
-| `notes`             | `string` | ❌       | Max 1000 chars, trimmed     |
+| Field                  | Type     | Required | Constraints                                          |
+| ---------------------- | -------- | -------- | ---------------------------------------------------- |
+| `supplier_id`          | `number` | ✅       | Positive integer                                     |
+| `pr_id`                | `number` | ✅       | Positive integer (must reference an **approved** PR) |
+| `items`                | `array`  | ✅       | Min 1 item                                           |
+| `items[].product_id`   | `number` | ✅       | Positive integer                                     |
+| `items[].product_name` | `string` | ✅       | Min 1, max 255 chars                                 |
+| `items[].quantity`     | `number` | ✅       | Positive integer                                     |
+| `items[].unit_price`   | `number` | ✅       | Positive number                                      |
+| `items[].total_price`  | `number` | ✅       | Positive number                                      |
+| `notes`                | `string` | ❌       | Max 1000 chars, trimmed                              |
 
 **Success Response (201):**
+
 ```json
 {
   "message": "Purchase order created successfully",
@@ -1270,33 +1316,34 @@ Base path: `/api/purchase-orders`
 
 **Error Responses:**
 
-| Status | Condition                   | Response                                                     |
-|--------|-----------------------------|--------------------------------------------------------------|
-| `400`  | Validation failed           | `{ "error": "Validation failed", "details": [...] }`        |
-| `400`  | PR not approved             | `{ "error": "Bad request", "message": "Purchase order can only be created from approved purchase requests" }` |
-| `404`  | PR not found                | `{ "error": "Not found", "message": "Purchase request not found" }` |
+| Status | Condition         | Response                                                                                                      |
+| ------ | ----------------- | ------------------------------------------------------------------------------------------------------------- |
+| `400`  | Validation failed | `{ "error": "Validation failed", "details": [...] }`                                                          |
+| `400`  | PR not approved   | `{ "error": "Bad request", "message": "Purchase order can only be created from approved purchase requests" }` |
+| `404`  | PR not found      | `{ "error": "Not found", "message": "Purchase request not found" }`                                           |
 
 ---
 
 #### `GET /api/purchase-orders`
 
-| Field           | Value                                            |
-|-----------------|--------------------------------------------------|
-| **Description** | Get all purchase orders (with optional filters)   |
-| **Auth**        | ✅ Yes                                            |
-| **Role**        | Any authenticated user                            |
+| Field           | Value                                           |
+| --------------- | ----------------------------------------------- |
+| **Description** | Get all purchase orders (with optional filters) |
+| **Auth**        | ✅ Yes                                          |
+| **Role**        | Any authenticated user                          |
 
 **Query Parameters:**
 
-| Param         | Type     | Required | Constraints                                          |
-|---------------|----------|----------|------------------------------------------------------|
+| Param         | Type     | Required | Constraints                                            |
+| ------------- | -------- | -------- | ------------------------------------------------------ |
 | `status`      | `string` | ❌       | `"pending"`, `"approved"`, `"received"`, `"cancelled"` |
-| `supplier_id` | `string` | ❌       | Numeric string                                        |
-| `pr_id`       | `string` | ❌       | Numeric string                                        |
+| `supplier_id` | `string` | ❌       | Numeric string                                         |
+| `pr_id`       | `string` | ❌       | Numeric string                                         |
 
 **Example:** `GET /api/purchase-orders?status=pending&supplier_id=1`
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Successfully retrieved all purchase orders",
@@ -1309,13 +1356,14 @@ Base path: `/api/purchase-orders`
 
 #### `GET /api/purchase-orders/:id`
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
-| **Description** | Get a single purchase order by ID              |
-| **Auth**        | ✅ Yes                                         |
-| **Role**        | Any authenticated user                         |
+| Field           | Value                             |
+| --------------- | --------------------------------- |
+| **Description** | Get a single purchase order by ID |
+| **Auth**        | ✅ Yes                            |
+| **Role**        | Any authenticated user            |
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Successfully retrieved purchase order",
@@ -1325,22 +1373,23 @@ Base path: `/api/purchase-orders`
 
 **Error Responses:**
 
-| Status | Condition         | Response                                                    |
-|--------|-------------------|-------------------------------------------------------------|
-| `400`  | Invalid ID format | `{ "error": "Validation failed", "details": [...] }`       |
+| Status | Condition         | Response                                                          |
+| ------ | ----------------- | ----------------------------------------------------------------- |
+| `400`  | Invalid ID format | `{ "error": "Validation failed", "details": [...] }`              |
 | `404`  | Not found         | `{ "error": "Not found", "message": "Purchase order not found" }` |
 
 ---
 
 #### `PUT /api/purchase-orders/:id`
 
-| Field           | Value                                            |
-|-----------------|--------------------------------------------------|
-| **Description** | Update a purchase order (only if pending)         |
-| **Auth**        | ✅ Yes                                            |
-| **Role**        | Any authenticated user                            |
+| Field           | Value                                     |
+| --------------- | ----------------------------------------- |
+| **Description** | Update a purchase order (only if pending) |
+| **Auth**        | ✅ Yes                                    |
+| **Role**        | Any authenticated user                    |
 
 **Request Body:**
+
 ```json
 {
   "supplier_id": 2,
@@ -1349,13 +1398,14 @@ Base path: `/api/purchase-orders`
 }
 ```
 
-| Field         | Type     | Required | Constraints         |
-|---------------|----------|----------|---------------------|
-| `supplier_id` | `number` | ❌       | Positive integer    |
-| `items`       | `array`  | ❌       | Min 1 item          |
-| `notes`       | `string` | ❌       | Max 1000 chars      |
+| Field         | Type     | Required | Constraints      |
+| ------------- | -------- | -------- | ---------------- |
+| `supplier_id` | `number` | ❌       | Positive integer |
+| `items`       | `array`  | ❌       | Min 1 item       |
+| `notes`       | `string` | ❌       | Max 1000 chars   |
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Purchase order updated successfully",
@@ -1365,34 +1415,36 @@ Base path: `/api/purchase-orders`
 
 **Error Responses:**
 
-| Status | Condition              | Response                                                    |
-|--------|------------------------|-------------------------------------------------------------|
-| `400`  | Validation failed      | `{ "error": "Validation failed", "details": [...] }`       |
-| `400`  | PO is not pending      | `{ "error": "Bad request", "message": "Cannot update a purchase order that is not pending" }` |
-| `404`  | PO not found           | `{ "error": "Not found", "message": "Purchase order not found" }` |
+| Status | Condition         | Response                                                                                      |
+| ------ | ----------------- | --------------------------------------------------------------------------------------------- |
+| `400`  | Validation failed | `{ "error": "Validation failed", "details": [...] }`                                          |
+| `400`  | PO is not pending | `{ "error": "Bad request", "message": "Cannot update a purchase order that is not pending" }` |
+| `404`  | PO not found      | `{ "error": "Not found", "message": "Purchase order not found" }`                             |
 
 ---
 
 #### `POST /api/purchase-orders/:id/cancel` 🔒 Admin Only
 
-| Field           | Value                                            |
-|-----------------|--------------------------------------------------|
-| **Description** | Cancel a purchase order                           |
-| **Auth**        | ✅ Yes                                            |
-| **Role**        | **Admin only**                                    |
+| Field           | Value                   |
+| --------------- | ----------------------- |
+| **Description** | Cancel a purchase order |
+| **Auth**        | ✅ Yes                  |
+| **Role**        | **Admin only**          |
 
 **Request Body:**
+
 ```json
 {
   "cancellation_reason": "Supplier unable to fulfill order"
 }
 ```
 
-| Field                 | Type     | Required | Constraints                    |
-|-----------------------|----------|----------|--------------------------------|
+| Field                 | Type     | Required | Constraints                   |
+| --------------------- | -------- | -------- | ----------------------------- |
 | `cancellation_reason` | `string` | ✅       | Min 5, max 500 chars, trimmed |
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Purchase order cancelled successfully",
@@ -1409,36 +1461,38 @@ Base path: `/api/purchase-orders`
 
 **Error Responses:**
 
-| Status | Condition                      | Response                                                    |
-|--------|--------------------------------|-------------------------------------------------------------|
-| `400`  | Validation failed              | `{ "error": "Validation failed", "details": [...] }`       |
-| `400`  | PO already cancelled           | `{ "error": "Bad request", "message": "Purchase order is already cancelled" }` |
-| `400`  | PO already received            | `{ "error": "Bad request", "message": "Cannot cancel a purchase order that has been received" }` |
-| `403`  | Not admin                      | `{ "error": "Forbidden", "message": "Admin access required" }` |
-| `404`  | PO not found                   | `{ "error": "Not found", "message": "Purchase order not found" }` |
+| Status | Condition            | Response                                                                                         |
+| ------ | -------------------- | ------------------------------------------------------------------------------------------------ |
+| `400`  | Validation failed    | `{ "error": "Validation failed", "details": [...] }`                                             |
+| `400`  | PO already cancelled | `{ "error": "Bad request", "message": "Purchase order is already cancelled" }`                   |
+| `400`  | PO already received  | `{ "error": "Bad request", "message": "Cannot cancel a purchase order that has been received" }` |
+| `403`  | Not admin            | `{ "error": "Forbidden", "message": "Admin access required" }`                                   |
+| `404`  | PO not found         | `{ "error": "Not found", "message": "Purchase order not found" }`                                |
 
 ---
 
 #### `POST /api/purchase-orders/:id/receive` ⚠️ Modifies Inventory
 
-| Field           | Value                                                       |
-|-----------------|-------------------------------------------------------------|
-| **Description** | Mark a purchase order as received and update inventory       |
-| **Auth**        | ✅ Yes                                                       |
-| **Role**        | Any authenticated user                                       |
+| Field           | Value                                                  |
+| --------------- | ------------------------------------------------------ |
+| **Description** | Mark a purchase order as received and update inventory |
+| **Auth**        | ✅ Yes                                                 |
+| **Role**        | Any authenticated user                                 |
 
 **Request Body:**
+
 ```json
 {
   "notes": "All items received in good condition"
 }
 ```
 
-| Field   | Type     | Required | Constraints           |
-|---------|----------|----------|-----------------------|
-| `notes` | `string` | ❌       | Max 500 chars, trimmed|
+| Field   | Type     | Required | Constraints            |
+| ------- | -------- | -------- | ---------------------- |
+| `notes` | `string` | ❌       | Max 500 chars, trimmed |
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Purchase order marked as received successfully",
@@ -1453,17 +1507,18 @@ Base path: `/api/purchase-orders`
 ```
 
 > **⚠️ Side Effect:** This endpoint automatically:
+>
 > 1. Increases `products.stock` for each item in the PO
 > 2. Updates or creates `inventory` records with increased quantities
 
 **Error Responses:**
 
-| Status | Condition                   | Response                                                    |
-|--------|-----------------------------|-------------------------------------------------------------|
-| `400`  | Validation failed           | `{ "error": "Validation failed", "details": [...] }`       |
-| `400`  | PO already received         | `{ "error": "Bad request", "message": "Purchase order is already marked as received" }` |
-| `400`  | PO is cancelled             | `{ "error": "Bad request", "message": "Cannot mark a cancelled purchase order as received" }` |
-| `404`  | PO not found                | `{ "error": "Not found", "message": "Purchase order not found" }` |
+| Status | Condition           | Response                                                                                      |
+| ------ | ------------------- | --------------------------------------------------------------------------------------------- |
+| `400`  | Validation failed   | `{ "error": "Validation failed", "details": [...] }`                                          |
+| `400`  | PO already received | `{ "error": "Bad request", "message": "Purchase order is already marked as received" }`       |
+| `400`  | PO is cancelled     | `{ "error": "Bad request", "message": "Cannot mark a cancelled purchase order as received" }` |
+| `404`  | PO not found        | `{ "error": "Not found", "message": "Purchase order not found" }`                             |
 
 ---
 
@@ -1475,22 +1530,23 @@ Base path: `/api/inventory`
 
 #### `GET /api/inventory`
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
+| Field           | Value                                             |
+| --------------- | ------------------------------------------------- |
 | **Description** | Get all inventory records (with optional filters) |
-| **Auth**        | ✅ Yes                                         |
-| **Role**        | Any authenticated user                         |
+| **Auth**        | ✅ Yes                                            |
+| **Role**        | Any authenticated user                            |
 
 **Query Parameters:**
 
-| Param       | Type     | Required | Constraints                     |
-|-------------|----------|----------|---------------------------------|
-| `product_id`| `string` | ❌       | Numeric string                  |
-| `low_stock` | `string` | ❌       | `"true"` or `"false"`          |
+| Param        | Type     | Required | Constraints           |
+| ------------ | -------- | -------- | --------------------- |
+| `product_id` | `string` | ❌       | Numeric string        |
+| `low_stock`  | `string` | ❌       | `"true"` or `"false"` |
 
 **Example:** `GET /api/inventory?low_stock=true`
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Successfully retrieved inventory",
@@ -1514,13 +1570,14 @@ Base path: `/api/inventory`
 
 #### `GET /api/inventory/alerts`
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
-| **Description** | Get products with stock below minimum threshold|
-| **Auth**        | ✅ Yes                                         |
-| **Role**        | Any authenticated user                         |
+| Field           | Value                                           |
+| --------------- | ----------------------------------------------- |
+| **Description** | Get products with stock below minimum threshold |
+| **Auth**        | ✅ Yes                                          |
+| **Role**        | Any authenticated user                          |
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Successfully retrieved low stock alerts",
@@ -1544,13 +1601,14 @@ Base path: `/api/inventory`
 
 #### `GET /api/inventory/:id`
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
-| **Description** | Get a single inventory record by ID            |
-| **Auth**        | ✅ Yes                                         |
-| **Role**        | Any authenticated user                         |
+| Field           | Value                               |
+| --------------- | ----------------------------------- |
+| **Description** | Get a single inventory record by ID |
+| **Auth**        | ✅ Yes                              |
+| **Role**        | Any authenticated user              |
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Successfully retrieved inventory item",
@@ -1560,22 +1618,23 @@ Base path: `/api/inventory`
 
 **Error Responses:**
 
-| Status | Condition         | Response                                                  |
-|--------|-------------------|-----------------------------------------------------------|
-| `400`  | Invalid ID format | `{ "error": "Validation failed", "details": [...] }`     |
+| Status | Condition         | Response                                                          |
+| ------ | ----------------- | ----------------------------------------------------------------- |
+| `400`  | Invalid ID format | `{ "error": "Validation failed", "details": [...] }`              |
 | `404`  | Not found         | `{ "error": "Not found", "message": "Inventory item not found" }` |
 
 ---
 
 #### `GET /api/inventory/product/:product_id`
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
-| **Description** | Get inventory record by product ID             |
-| **Auth**        | ✅ Yes                                         |
-| **Role**        | Any authenticated user                         |
+| Field           | Value                              |
+| --------------- | ---------------------------------- |
+| **Description** | Get inventory record by product ID |
+| **Auth**        | ✅ Yes                             |
+| **Role**        | Any authenticated user             |
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Successfully retrieved inventory item",
@@ -1585,22 +1644,23 @@ Base path: `/api/inventory`
 
 **Error Responses:**
 
-| Status | Condition            | Response                                                  |
-|--------|----------------------|-----------------------------------------------------------|
-| `400`  | Invalid product ID   | `{ "error": "Validation failed", "message": "Invalid product ID" }` |
-| `404`  | Not found            | `{ "error": "Not found", "message": "Inventory item not found for this product" }` |
+| Status | Condition          | Response                                                                           |
+| ------ | ------------------ | ---------------------------------------------------------------------------------- |
+| `400`  | Invalid product ID | `{ "error": "Validation failed", "message": "Invalid product ID" }`                |
+| `404`  | Not found          | `{ "error": "Not found", "message": "Inventory item not found for this product" }` |
 
 ---
 
 #### `POST /api/inventory/adjust` 🔒 Admin Only ⚠️ Modifies Inventory
 
-| Field           | Value                                         |
-|-----------------|-----------------------------------------------|
-| **Description** | Manually adjust stock quantity for a product   |
-| **Auth**        | ✅ Yes                                         |
-| **Role**        | **Admin only**                                 |
+| Field           | Value                                        |
+| --------------- | -------------------------------------------- |
+| **Description** | Manually adjust stock quantity for a product |
+| **Auth**        | ✅ Yes                                       |
+| **Role**        | **Admin only**                               |
 
 **Request Body:**
+
 ```json
 {
   "product_id": 1,
@@ -1609,15 +1669,16 @@ Base path: `/api/inventory`
 }
 ```
 
-| Field        | Type     | Required | Constraints                                    |
-|--------------|----------|----------|------------------------------------------------|
-| `product_id` | `number` | ✅       | Positive integer                               |
-| `quantity`   | `number` | ✅       | Integer (positive = add, negative = subtract)  |
+| Field        | Type     | Required | Constraints                                   |
+| ------------ | -------- | -------- | --------------------------------------------- |
+| `product_id` | `number` | ✅       | Positive integer                              |
+| `quantity`   | `number` | ✅       | Integer (positive = add, negative = subtract) |
 | `reason`     | `string` | ✅       | Min 5, max 500 chars, trimmed                 |
 
 > **Note:** If no inventory record exists for the product, one will be created automatically with `quantity: 0` before applying the adjustment.
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Stock adjusted successfully",
@@ -1634,36 +1695,38 @@ Base path: `/api/inventory`
 
 **Error Responses:**
 
-| Status | Condition                        | Response                                                  |
-|--------|----------------------------------|-----------------------------------------------------------|
-| `400`  | Validation failed                | `{ "error": "Validation failed", "details": [...] }`     |
-| `400`  | Would result in negative stock   | `{ "error": "Bad request", "message": "Adjustment would result in negative stock quantity" }` |
-| `403`  | Not admin                        | `{ "error": "Forbidden", "message": "Admin access required" }` |
+| Status | Condition                      | Response                                                                                      |
+| ------ | ------------------------------ | --------------------------------------------------------------------------------------------- |
+| `400`  | Validation failed              | `{ "error": "Validation failed", "details": [...] }`                                          |
+| `400`  | Would result in negative stock | `{ "error": "Bad request", "message": "Adjustment would result in negative stock quantity" }` |
+| `403`  | Not admin                      | `{ "error": "Forbidden", "message": "Admin access required" }`                                |
 
 ---
 
 #### `PUT /api/inventory/product/:product_id/threshold` 🔒 Admin Only
 
 | Field           | Value                                            |
-|-----------------|--------------------------------------------------|
-| **Description** | Update the minimum stock threshold for a product  |
-| **Auth**        | ✅ Yes                                            |
-| **Role**        | **Admin only**                                    |
+| --------------- | ------------------------------------------------ |
+| **Description** | Update the minimum stock threshold for a product |
+| **Auth**        | ✅ Yes                                           |
+| **Role**        | **Admin only**                                   |
 
 **Request Body:**
+
 ```json
 {
   "min_threshold": 25
 }
 ```
 
-| Field           | Type     | Required | Constraints            |
-|-----------------|----------|----------|------------------------|
-| `min_threshold` | `number` | ✅       | Non-negative integer   |
+| Field           | Type     | Required | Constraints          |
+| --------------- | -------- | -------- | -------------------- |
+| `min_threshold` | `number` | ✅       | Non-negative integer |
 
 > **Note:** If no inventory record exists for the product, one will be created with `quantity: 0` and the given threshold.
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Minimum threshold updated successfully",
@@ -1680,20 +1743,20 @@ Base path: `/api/inventory`
 
 **Error Responses:**
 
-| Status | Condition          | Response                                                  |
-|--------|--------------------|-----------------------------------------------------------|
-| `400`  | Validation failed  | `{ "error": "Validation failed", "details": [...] }`     |
+| Status | Condition          | Response                                                            |
+| ------ | ------------------ | ------------------------------------------------------------------- |
+| `400`  | Validation failed  | `{ "error": "Validation failed", "details": [...] }`                |
 | `400`  | Invalid product ID | `{ "error": "Validation failed", "message": "Invalid product ID" }` |
-| `403`  | Not admin          | `{ "error": "Forbidden", "message": "Admin access required" }` |
+| `403`  | Not admin          | `{ "error": "Forbidden", "message": "Admin access required" }`      |
 
 ---
 
 ## APIs That Modify Inventory
 
-| Endpoint                                       | How It Affects Inventory                                                    |
-|------------------------------------------------|-----------------------------------------------------------------------------|
-| `POST /api/purchase-orders/:id/receive`        | ⬆️ Increases `products.stock` and `inventory.quantity` for all PO items      |
-| `POST /api/inventory/adjust`                   | ⬆️⬇️ Directly adjusts `inventory.quantity` (add or subtract)                |
+| Endpoint                                           | How It Affects Inventory                                                |
+| -------------------------------------------------- | ----------------------------------------------------------------------- |
+| `POST /api/purchase-orders/:id/receive`            | ⬆️ Increases `products.stock` and `inventory.quantity` for all PO items |
+| `POST /api/inventory/adjust`                       | ⬆️⬇️ Directly adjusts `inventory.quantity` (add or subtract)            |
 | `PUT /api/inventory/product/:product_id/threshold` | 📏 Updates the `min_threshold` for low-stock alerts                     |
 
 > **Note:** There is **no budget module** currently implemented. The `total_cost` field on Purchase Requests and `total_amount` on Purchase Orders track monetary values, but there is no dedicated budget tracking or enforcement system.
@@ -1704,28 +1767,28 @@ Base path: `/api/inventory`
 
 ### 🔒 Admin-Only Endpoints
 
-| Method   | Endpoint                                          | Action                          |
-|----------|---------------------------------------------------|---------------------------------|
-| `DELETE` | `/api/products/:id`                               | Delete a product                |
-| `DELETE` | `/api/categories/:id`                             | Delete a category               |
-| `DELETE` | `/api/suppliers/:id`                              | Delete a supplier               |
-| `POST`   | `/api/purchase-orders/:id/cancel`                 | Cancel a purchase order         |
-| `POST`   | `/api/inventory/adjust`                           | Adjust stock quantity           |
-| `PUT`    | `/api/inventory/product/:product_id/threshold`    | Update min stock threshold      |
+| Method   | Endpoint                                       | Action                     |
+| -------- | ---------------------------------------------- | -------------------------- |
+| `DELETE` | `/api/products/:id`                            | Delete a product           |
+| `DELETE` | `/api/categories/:id`                          | Delete a category          |
+| `DELETE` | `/api/suppliers/:id`                           | Delete a supplier          |
+| `POST`   | `/api/purchase-orders/:id/cancel`              | Cancel a purchase order    |
+| `POST`   | `/api/inventory/adjust`                        | Adjust stock quantity      |
+| `PUT`    | `/api/inventory/product/:product_id/threshold` | Update min stock threshold |
 
 ### 🔒 Admin or Manager Endpoints
 
-| Method | Endpoint                                    | Action                            |
-|--------|---------------------------------------------|-----------------------------------|
-| `POST` | `/api/purchase-requests/:id/approve`        | Approve a purchase request        |
-| `POST` | `/api/purchase-requests/:id/reject`         | Reject a purchase request         |
+| Method | Endpoint                             | Action                     |
+| ------ | ------------------------------------ | -------------------------- |
+| `POST` | `/api/purchase-requests/:id/approve` | Approve a purchase request |
+| `POST` | `/api/purchase-requests/:id/reject`  | Reject a purchase request  |
 
 ### 🔐 Self-or-Admin Endpoints
 
-| Method   | Endpoint            | Rule                                            |
-|----------|---------------------|-------------------------------------------------|
-| `PUT`    | `/api/users/:id`    | Users can update their own profile; admin can update any. Only admin can change `role`. |
-| `DELETE` | `/api/users/:id`    | Users can delete their own account; admin can delete any. |
+| Method   | Endpoint         | Rule                                                                                    |
+| -------- | ---------------- | --------------------------------------------------------------------------------------- |
+| `PUT`    | `/api/users/:id` | Users can update their own profile; admin can update any. Only admin can change `role`. |
+| `DELETE` | `/api/users/:id` | Users can delete their own account; admin can delete any.                               |
 
 ---
 
@@ -1759,6 +1822,7 @@ Follow this order to satisfy data dependencies:
 ### Step 1: Create Admin Account
 
 **cURL:**
+
 ```bash
 curl -X POST http://localhost:3000/api/auth/sign-up \
   -H "Content-Type: application/json" \
@@ -1948,7 +2012,7 @@ curl -X PUT http://localhost:3000/api/inventory/product/1/threshold \
 #### Authentication & Authorization
 
 | Test Case                                                  | Expected Status |
-|------------------------------------------------------------|-----------------|
+| ---------------------------------------------------------- | --------------- |
 | Access any authenticated endpoint without cookie           | `401`           |
 | Access any authenticated endpoint with expired/invalid JWT | `401`           |
 | Regular user tries to delete a product                     | `403`           |
@@ -1961,7 +2025,7 @@ curl -X PUT http://localhost:3000/api/inventory/product/1/threshold \
 #### Validation Errors
 
 | Test Case                                        | Expected Status |
-|--------------------------------------------------|-----------------|
+| ------------------------------------------------ | --------------- |
 | Sign up with email shorter than valid format     | `400`           |
 | Sign up with password less than 6 chars          | `400`           |
 | Create product with empty name                   | `400`           |
@@ -1973,32 +2037,32 @@ curl -X PUT http://localhost:3000/api/inventory/product/1/threshold \
 
 #### Business Logic Errors
 
-| Test Case                                                    | Expected Status |
-|--------------------------------------------------------------|-----------------|
-| Sign up with an already-registered email                     | `409`           |
-| Create a category with a duplicate name                      | `409`           |
-| Create a supplier with a duplicate email                     | `409`           |
-| Create a PO from a non-approved PR                           | `400`           |
-| Update a PR that has already been approved                   | `400`           |
-| Delete a PR that has already been approved                   | `400`           |
-| Approve an already-approved PR                               | `400`           |
-| Reject an already-approved PR                                | `400`           |
-| Update a PO that is not pending                              | `400`           |
-| Cancel a PO that is already cancelled                        | `400`           |
-| Cancel a PO that has been received                           | `400`           |
-| Receive a PO that is already received                        | `400`           |
-| Receive a PO that is cancelled                               | `400`           |
-| Adjust stock that would result in negative quantity           | `400`           |
-| Get a user/product/category/supplier that doesn't exist       | `404`           |
-| Access a non-existent route                                   | `404`           |
+| Test Case                                               | Expected Status |
+| ------------------------------------------------------- | --------------- |
+| Sign up with an already-registered email                | `409`           |
+| Create a category with a duplicate name                 | `409`           |
+| Create a supplier with a duplicate email                | `409`           |
+| Create a PO from a non-approved PR                      | `400`           |
+| Update a PR that has already been approved              | `400`           |
+| Delete a PR that has already been approved              | `400`           |
+| Approve an already-approved PR                          | `400`           |
+| Reject an already-approved PR                           | `400`           |
+| Update a PO that is not pending                         | `400`           |
+| Cancel a PO that is already cancelled                   | `400`           |
+| Cancel a PO that has been received                      | `400`           |
+| Receive a PO that is already received                   | `400`           |
+| Receive a PO that is cancelled                          | `400`           |
+| Adjust stock that would result in negative quantity     | `400`           |
+| Get a user/product/category/supplier that doesn't exist | `404`           |
+| Access a non-existent route                             | `404`           |
 
 #### Rate Limiting
 
-| Test Case                                                | Expected Status |
-|----------------------------------------------------------|-----------------|
-| Send > 5 requests in 1 minute as guest                   | `429`           |
-| Send > 10 requests in 1 minute as regular user           | `429`           |
-| Send > 20 requests in 1 minute as admin                  | `429`           |
+| Test Case                                      | Expected Status |
+| ---------------------------------------------- | --------------- |
+| Send > 5 requests in 1 minute as guest         | `429`           |
+| Send > 10 requests in 1 minute as regular user | `429`           |
+| Send > 20 requests in 1 minute as admin        | `429`           |
 
 ---
 
@@ -2071,56 +2135,55 @@ curl -X PUT http://localhost:3000/api/inventory/product/1/threshold \
 
 ## API Summary Table
 
-| #  | Method   | Endpoint                                        | Auth | Role              | Description                           |
-|----|----------|-------------------------------------------------|------|-------------------|---------------------------------------|
-| 1  | `GET`    | `/`                                             | ❌   | Any               | Root hello message                    |
-| 2  | `GET`    | `/health`                                       | ❌   | Any               | Health check                          |
-| 3  | `GET`    | `/api`                                          | ❌   | Any               | API welcome message                   |
-| 4  | `POST`  | `/api/auth/sign-up`                              | ❌   | Any               | Register a new user                   |
-| 5  | `POST`  | `/api/auth/sign-in`                              | ❌   | Any               | Sign in                               |
-| 6  | `POST`  | `/api/auth/sign-out`                             | ❌   | Any               | Sign out                              |
-| 7  | `GET`   | `/api/users`                                     | ✅   | Any               | Get all users                         |
-| 8  | `GET`   | `/api/users/:id`                                 | ✅   | Any               | Get user by ID                        |
-| 9  | `PUT`   | `/api/users/:id`                                 | ✅   | Self / Admin      | Update user                           |
-| 10 | `DELETE`| `/api/users/:id`                                 | ✅   | Self / Admin      | Delete user                           |
-| 11 | `POST`  | `/api/categories`                                | ✅   | Any               | Create category                       |
-| 12 | `GET`   | `/api/categories`                                | ✅   | Any               | Get all categories                    |
-| 13 | `GET`   | `/api/categories/:id`                            | ✅   | Any               | Get category by ID                    |
-| 14 | `PUT`   | `/api/categories/:id`                            | ✅   | Any               | Update category                       |
-| 15 | `DELETE`| `/api/categories/:id`                            | ✅   | **Admin**         | Delete category                       |
-| 16 | `POST`  | `/api/products`                                  | ✅   | Any               | Create product                        |
-| 17 | `GET`   | `/api/products`                                  | ✅   | Any               | Get all products (filterable)         |
-| 18 | `GET`   | `/api/products/:id`                              | ✅   | Any               | Get product by ID                     |
-| 19 | `PUT`   | `/api/products/:id`                              | ✅   | Any               | Update product                        |
-| 20 | `DELETE`| `/api/products/:id`                              | ✅   | **Admin**         | Delete product                        |
-| 21 | `POST`  | `/api/suppliers`                                 | ✅   | Any               | Create supplier                       |
-| 22 | `GET`   | `/api/suppliers`                                 | ✅   | Any               | Get all suppliers                     |
-| 23 | `GET`   | `/api/suppliers/:id`                             | ✅   | Any               | Get supplier by ID                    |
-| 24 | `PUT`   | `/api/suppliers/:id`                             | ✅   | Any               | Update supplier                       |
-| 25 | `DELETE`| `/api/suppliers/:id`                             | ✅   | **Admin**         | Delete supplier                       |
-| 26 | `POST`  | `/api/purchase-requests`                         | ✅   | Any               | Create purchase request               |
-| 27 | `GET`   | `/api/purchase-requests`                         | ✅   | Any               | Get all PRs (filterable)              |
-| 28 | `GET`   | `/api/purchase-requests/:id`                     | ✅   | Any               | Get PR by ID                          |
-| 29 | `PUT`   | `/api/purchase-requests/:id`                     | ✅   | Any               | Update PR (pending only)              |
-| 30 | `DELETE`| `/api/purchase-requests/:id`                     | ✅   | Any               | Delete PR (pending only)              |
-| 31 | `POST`  | `/api/purchase-requests/:id/approve`             | ✅   | **Admin/Manager** | Approve PR                            |
-| 32 | `POST`  | `/api/purchase-requests/:id/reject`              | ✅   | **Admin/Manager** | Reject PR                             |
-| 33 | `POST`  | `/api/purchase-orders`                           | ✅   | Any               | Create PO (from approved PR)          |
-| 34 | `GET`   | `/api/purchase-orders`                           | ✅   | Any               | Get all POs (filterable)              |
-| 35 | `GET`   | `/api/purchase-orders/:id`                       | ✅   | Any               | Get PO by ID                          |
-| 36 | `PUT`   | `/api/purchase-orders/:id`                       | ✅   | Any               | Update PO (pending only)              |
-| 37 | `POST`  | `/api/purchase-orders/:id/cancel`                | ✅   | **Admin**         | Cancel PO                             |
-| 38 | `POST`  | `/api/purchase-orders/:id/receive`               | ✅   | Any               | Receive PO ⚠️ *modifies inventory*    |
-| 39 | `GET`   | `/api/inventory`                                 | ✅   | Any               | Get all inventory (filterable)        |
-| 40 | `GET`   | `/api/inventory/alerts`                          | ✅   | Any               | Get low stock alerts                  |
-| 41 | `GET`   | `/api/inventory/:id`                             | ✅   | Any               | Get inventory by ID                   |
-| 42 | `GET`   | `/api/inventory/product/:product_id`             | ✅   | Any               | Get inventory by product ID           |
-| 43 | `POST`  | `/api/inventory/adjust`                          | ✅   | **Admin**         | Adjust stock ⚠️ *modifies inventory*  |
-| 44 | `PUT`   | `/api/inventory/product/:product_id/threshold`   | ✅   | **Admin**         | Update min threshold                  |
+| #   | Method   | Endpoint                                       | Auth | Role              | Description                          |
+| --- | -------- | ---------------------------------------------- | ---- | ----------------- | ------------------------------------ |
+| 1   | `GET`    | `/`                                            | ❌   | Any               | Root hello message                   |
+| 2   | `GET`    | `/health`                                      | ❌   | Any               | Health check                         |
+| 3   | `GET`    | `/api`                                         | ❌   | Any               | API welcome message                  |
+| 4   | `POST`   | `/api/auth/sign-up`                            | ❌   | Any               | Register a new user                  |
+| 5   | `POST`   | `/api/auth/sign-in`                            | ❌   | Any               | Sign in                              |
+| 6   | `POST`   | `/api/auth/sign-out`                           | ❌   | Any               | Sign out                             |
+| 7   | `GET`    | `/api/users`                                   | ✅   | Any               | Get all users                        |
+| 8   | `GET`    | `/api/users/:id`                               | ✅   | Any               | Get user by ID                       |
+| 9   | `PUT`    | `/api/users/:id`                               | ✅   | Self / Admin      | Update user                          |
+| 10  | `DELETE` | `/api/users/:id`                               | ✅   | Self / Admin      | Delete user                          |
+| 11  | `POST`   | `/api/categories`                              | ✅   | Any               | Create category                      |
+| 12  | `GET`    | `/api/categories`                              | ✅   | Any               | Get all categories                   |
+| 13  | `GET`    | `/api/categories/:id`                          | ✅   | Any               | Get category by ID                   |
+| 14  | `PUT`    | `/api/categories/:id`                          | ✅   | Any               | Update category                      |
+| 15  | `DELETE` | `/api/categories/:id`                          | ✅   | **Admin**         | Delete category                      |
+| 16  | `POST`   | `/api/products`                                | ✅   | Any               | Create product                       |
+| 17  | `GET`    | `/api/products`                                | ✅   | Any               | Get all products (filterable)        |
+| 18  | `GET`    | `/api/products/:id`                            | ✅   | Any               | Get product by ID                    |
+| 19  | `PUT`    | `/api/products/:id`                            | ✅   | Any               | Update product                       |
+| 20  | `DELETE` | `/api/products/:id`                            | ✅   | **Admin**         | Delete product                       |
+| 21  | `POST`   | `/api/suppliers`                               | ✅   | Any               | Create supplier                      |
+| 22  | `GET`    | `/api/suppliers`                               | ✅   | Any               | Get all suppliers                    |
+| 23  | `GET`    | `/api/suppliers/:id`                           | ✅   | Any               | Get supplier by ID                   |
+| 24  | `PUT`    | `/api/suppliers/:id`                           | ✅   | Any               | Update supplier                      |
+| 25  | `DELETE` | `/api/suppliers/:id`                           | ✅   | **Admin**         | Delete supplier                      |
+| 26  | `POST`   | `/api/purchase-requests`                       | ✅   | Any               | Create purchase request              |
+| 27  | `GET`    | `/api/purchase-requests`                       | ✅   | Any               | Get all PRs (filterable)             |
+| 28  | `GET`    | `/api/purchase-requests/:id`                   | ✅   | Any               | Get PR by ID                         |
+| 29  | `PUT`    | `/api/purchase-requests/:id`                   | ✅   | Any               | Update PR (pending only)             |
+| 30  | `DELETE` | `/api/purchase-requests/:id`                   | ✅   | Any               | Delete PR (pending only)             |
+| 31  | `POST`   | `/api/purchase-requests/:id/approve`           | ✅   | **Admin/Manager** | Approve PR                           |
+| 32  | `POST`   | `/api/purchase-requests/:id/reject`            | ✅   | **Admin/Manager** | Reject PR                            |
+| 33  | `POST`   | `/api/purchase-orders`                         | ✅   | Any               | Create PO (from approved PR)         |
+| 34  | `GET`    | `/api/purchase-orders`                         | ✅   | Any               | Get all POs (filterable)             |
+| 35  | `GET`    | `/api/purchase-orders/:id`                     | ✅   | Any               | Get PO by ID                         |
+| 36  | `PUT`    | `/api/purchase-orders/:id`                     | ✅   | Any               | Update PO (pending only)             |
+| 37  | `POST`   | `/api/purchase-orders/:id/cancel`              | ✅   | **Admin**         | Cancel PO                            |
+| 38  | `POST`   | `/api/purchase-orders/:id/receive`             | ✅   | Any               | Receive PO ⚠️ _modifies inventory_   |
+| 39  | `GET`    | `/api/inventory`                               | ✅   | Any               | Get all inventory (filterable)       |
+| 40  | `GET`    | `/api/inventory/alerts`                        | ✅   | Any               | Get low stock alerts                 |
+| 41  | `GET`    | `/api/inventory/:id`                           | ✅   | Any               | Get inventory by ID                  |
+| 42  | `GET`    | `/api/inventory/product/:product_id`           | ✅   | Any               | Get inventory by product ID          |
+| 43  | `POST`   | `/api/inventory/adjust`                        | ✅   | **Admin**         | Adjust stock ⚠️ _modifies inventory_ |
+| 44  | `PUT`    | `/api/inventory/product/:product_id/threshold` | ✅   | **Admin**         | Update min threshold                 |
 
 **Total Endpoints: 44**
 
 ---
 
-*Generated from actual codebase analysis — routes, controllers, services, middleware, models, and validation schemas.*
-
+_Generated from actual codebase analysis — routes, controllers, services, middleware, models, and validation schemas._

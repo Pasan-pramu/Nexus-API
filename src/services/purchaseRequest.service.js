@@ -124,7 +124,10 @@ export const updatePurchaseRequest = async (id, updates) => {
 
     // Recalculate total cost if items are updated
     if (updates.items) {
-      const totalCost = updates.items.reduce((sum, item) => sum + item.total_price, 0);
+      const totalCost = updates.items.reduce(
+        (sum, item) => sum + item.total_price,
+        0
+      );
       updateData.total_cost = totalCost.toString();
     }
 
@@ -228,7 +231,11 @@ export const approvePurchaseRequest = async (id, approverId, notes) => {
   }
 };
 
-export const rejectPurchaseRequest = async (id, approverId, rejectionReason) => {
+export const rejectPurchaseRequest = async (
+  id,
+  approverId,
+  rejectionReason
+) => {
   try {
     const [existingPR] = await db
       .select()

@@ -38,7 +38,9 @@ export const createNewPurchaseOrder = async (req, res, next) => {
       createdBy: req.user.id,
     });
 
-    logger.info(`Purchase order ${purchaseOrder.id} created by user ${req.user.email}`);
+    logger.info(
+      `Purchase order ${purchaseOrder.id} created by user ${req.user.email}`
+    );
     res.status(201).json({
       message: 'Purchase order created successfully',
       purchase_order: purchaseOrder,
@@ -53,7 +55,10 @@ export const createNewPurchaseOrder = async (req, res, next) => {
       });
     }
 
-    if (e.message === 'Purchase order can only be created from approved purchase requests') {
+    if (
+      e.message ===
+      'Purchase order can only be created from approved purchase requests'
+    ) {
       return res.status(400).json({
         error: 'Bad request',
         message: e.message,
@@ -204,7 +209,11 @@ export const cancelPurchaseOrderById = async (req, res, next) => {
 
     logger.info(`Cancelling purchase order with id ${id}...`);
 
-    const cancelledPO = await cancelPurchaseOrder(id, req.user.id, cancellation_reason);
+    const cancelledPO = await cancelPurchaseOrder(
+      id,
+      req.user.id,
+      cancellation_reason
+    );
 
     logger.info(`Purchase order ${id} cancelled by admin ${req.user.email}`);
     res.json({
@@ -221,7 +230,10 @@ export const cancelPurchaseOrderById = async (req, res, next) => {
       });
     }
 
-    if (e.message === 'Purchase order is already cancelled' || e.message === 'Cannot cancel a purchase order that has been received') {
+    if (
+      e.message === 'Purchase order is already cancelled' ||
+      e.message === 'Cannot cancel a purchase order that has been received'
+    ) {
       return res.status(400).json({
         error: 'Bad request',
         message: e.message,
@@ -274,7 +286,10 @@ export const markPurchaseOrderAsReceived = async (req, res, next) => {
       });
     }
 
-    if (e.message === 'Purchase order is already marked as received' || e.message === 'Cannot mark a cancelled purchase order as received') {
+    if (
+      e.message === 'Purchase order is already marked as received' ||
+      e.message === 'Cannot mark a cancelled purchase order as received'
+    ) {
       return res.status(400).json({
         error: 'Bad request',
         message: e.message,

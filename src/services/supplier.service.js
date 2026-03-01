@@ -3,7 +3,13 @@ import { db } from '#config/database.js';
 import { suppliers } from '#models/supplier.model.js';
 import { eq } from 'drizzle-orm';
 
-export const createSupplier = async ({ name, email, phone, address, status }) => {
+export const createSupplier = async ({
+  name,
+  email,
+  phone,
+  address,
+  status,
+}) => {
   try {
     const existingSupplier = await db
       .select()

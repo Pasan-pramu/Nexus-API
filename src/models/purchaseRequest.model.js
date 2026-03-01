@@ -1,9 +1,20 @@
-import { pgTable, serial, timestamp, varchar, text, numeric, integer, jsonb } from 'drizzle-orm/pg-core';
+import {
+  pgTable,
+  serial,
+  timestamp,
+  varchar,
+  text,
+  numeric,
+  integer,
+  jsonb,
+} from 'drizzle-orm/pg-core';
 import { users } from './user.model.js';
 
 export const purchaseRequests = pgTable('purchase_requests', {
   id: serial('id').primaryKey(),
-  requester_id: integer('requester_id').notNull().references(() => users.id),
+  requester_id: integer('requester_id')
+    .notNull()
+    .references(() => users.id),
   items: jsonb('items').notNull(),
   total_cost: numeric('total_cost', { precision: 10, scale: 2 }).notNull(),
   status: varchar('status', { length: 50 }).notNull().default('pending'),

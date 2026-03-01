@@ -6,7 +6,13 @@ import { products } from '#models/product.model.js';
 import { inventory } from '#models/inventory.model.js';
 import { eq, and, sql } from 'drizzle-orm';
 
-export const createPurchaseOrder = async ({ supplierId, prId, items, notes, createdBy }) => {
+export const createPurchaseOrder = async ({
+  supplierId,
+  prId,
+  items,
+  notes,
+  createdBy,
+}) => {
   try {
     // Verify that the PR exists and is approved
     const [pr] = await db
@@ -20,7 +26,9 @@ export const createPurchaseOrder = async ({ supplierId, prId, items, notes, crea
     }
 
     if (pr.status !== 'approved') {
-      throw new Error('Purchase order can only be created from approved purchase requests');
+      throw new Error(
+        'Purchase order can only be created from approved purchase requests'
+      );
     }
 
     const totalAmount = items.reduce((sum, item) => sum + item.total_price, 0);
@@ -54,7 +62,9 @@ export const createPurchaseOrder = async ({ supplierId, prId, items, notes, crea
         updated_at: purchaseOrders.updated_at,
       });
 
-    logger.info(`Purchase order ${newPO.id} created by user ${createdBy} for PR ${prId}`);
+    logger.info(
+      `Purchase order ${newPO.id} created by user ${createdBy} for PR ${prId}`
+    );
     return newPO;
   } catch (e) {
     logger.error('Error creating purchase order', e);
@@ -160,7 +170,10 @@ export const updatePurchaseOrder = async (id, updates) => {
 
     // Recalculate total amount if items are updated
     if (updates.items) {
-      const totalAmount = updates.items.reduce((sum, item) => sum + item.total_price, 0);
+      const totalAmount = updates.items.reduce(
+        (sum, item) => sum + item.total_price,
+        0
+      );
       updateData.total_amount = totalAmount.toString();
     }
 
@@ -194,7 +207,11 @@ export const updatePurchaseOrder = async (id, updates) => {
   }
 };
 
-export const cancelPurchaseOrder = async (id, cancelledBy, cancellationReason) => {
+export const cancelPurchaseOrder = async (
+  id,
+  cancelledBy,
+  cancellationReason
+) => {
   try {
     const [existingPO] = await db
       .select()
@@ -307,7 +324,9 @@ export const markAsReceived = async (id, receivedBy, notes) => {
         });
       }
 
-      logger.info(`Inventory updated for product ${item.product_id}: +${item.quantity} units`);
+      logger.info(
+        `Inventory updated for product ${item.product_id}: +${item.quantity} units`
+      );
     }
 
     const [receivedPO] = await db
@@ -338,7 +357,9 @@ export const markAsReceived = async (id, receivedBy, notes) => {
         updated_at: purchaseOrders.updated_at,
       });
 
-    logger.info(`Purchase order ${id} marked as received by user ${receivedBy}`);
+    logger.info(
+      `Purchase order ${id} marked as received by user ${receivedBy}`
+    );
     return receivedPO;
   } catch (e) {
     logger.error('Error marking purchase order as received', e);

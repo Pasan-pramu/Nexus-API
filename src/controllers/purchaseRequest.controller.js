@@ -37,7 +37,9 @@ export const createNewPurchaseRequest = async (req, res, next) => {
       notes,
     });
 
-    logger.info(`Purchase request ${purchaseRequest.id} created by user ${req.user.email}`);
+    logger.info(
+      `Purchase request ${purchaseRequest.id} created by user ${req.user.email}`
+    );
     res.status(201).json({
       message: 'Purchase request created successfully',
       purchase_request: purchaseRequest,
@@ -284,7 +286,11 @@ export const rejectPurchaseRequestById = async (req, res, next) => {
 
     logger.info(`Rejecting purchase request with id ${id}...`);
 
-    const rejectedPR = await rejectPurchaseRequest(id, req.user.id, rejection_reason);
+    const rejectedPR = await rejectPurchaseRequest(
+      id,
+      req.user.id,
+      rejection_reason
+    );
 
     logger.info(`Purchase request ${id} rejected by ${req.user.email}`);
     res.json({

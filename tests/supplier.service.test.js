@@ -37,12 +37,8 @@ jest.unstable_mockModule('#models/supplier.model.js', () => ({
 }));
 
 // Import after mocking
-const {
-  createSupplier,
-  getSupplierById,
-  updateSupplier,
-  deleteSupplier,
-} = await import('#services/supplier.service.js');
+const { createSupplier, getSupplierById, updateSupplier, deleteSupplier } =
+  await import('#services/supplier.service.js');
 
 describe('Supplier Service', () => {
   beforeEach(() => {
@@ -74,7 +70,9 @@ describe('Supplier Service', () => {
       });
 
       // Mock: insert new supplier
-      const mockInsertReturning = jest.fn().mockResolvedValue([mockCreatedSupplier]);
+      const mockInsertReturning = jest
+        .fn()
+        .mockResolvedValue([mockCreatedSupplier]);
       const mockInsertValues = jest.fn().mockReturnValue({
         returning: mockInsertReturning,
       });
@@ -189,7 +187,7 @@ describe('Supplier Service', () => {
   });
 
   describe('updateSupplier', () => {
-    it('should successfully update an existing supplier\'s details', async () => {
+    it("should successfully update an existing supplier's details", async () => {
       const supplierId = 1;
       const existingSupplier = {
         id: supplierId,

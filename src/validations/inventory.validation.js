@@ -1,12 +1,18 @@
 import { z } from 'zod';
 
 export const inventoryIdSchema = z.object({
-  id: z.string().regex(/^\d+$/, 'Invalid inventory ID format').transform(Number),
+  id: z
+    .string()
+    .regex(/^\d+$/, 'Invalid inventory ID format')
+    .transform(Number),
 });
 
 export const inventoryQuerySchema = z.object({
   product_id: z.string().regex(/^\d+$/).transform(Number).optional(),
-  low_stock: z.enum(['true', 'false']).transform(val => val === 'true').optional(),
+  low_stock: z
+    .enum(['true', 'false'])
+    .transform(val => val === 'true')
+    .optional(),
 });
 
 export const stockAdjustmentSchema = z.object({
