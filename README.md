@@ -1,7 +1,7 @@
 <div align="center">
   <br />
     <a href="" target="_blank">
-      <img src="public/readme/hero.webp" alt="Project Banner">
+      <img src="public/readme/Nexus-hero.webp" alt="Project Banner">
     </a>
   <br />
 
