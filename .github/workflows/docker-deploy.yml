@@ -25,6 +25,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linter
+        run: npm run lint
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
@@ -39,9 +51,6 @@ jobs:
           cache-to: type=gha,mode=max
           load: true
 
-      - name: Run linter
-        run: |
-          docker run --rm nexus-api:test npm run lint
 
       - name: Test application health
         run: |
